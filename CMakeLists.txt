@@ -11,6 +11,8 @@ add_executable(
         libft/ft_lstadd_back.c
         libft/ft_lstclear.c
         libft/ft_isdigit.c
+        libft/ft_putstr_fd.c
+        libft/ft_strlen.c
         libft/ft_split.c
         push_swap.h
         sources/args.c

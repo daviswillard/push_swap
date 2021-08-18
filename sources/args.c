@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+#include <stdio.h>
 
 /*static void	freedom(char ***ret)
 {
@@ -26,44 +27,35 @@
 	*ret = NULL;
 }*/
 
-static void	put_ind(int **integer, int **index, char **argv)
+static void	put_ind(int **integer, int **index, char **argv, int argc)
 {
-	int	min;
 	int	ind;
-	int	min_old;
-	int	count;
-	int	indd;
+	int	counter;
+	int	counter2;
 
-	indd = 0;
-	count = 0;
-	min_old = 0x80000000;
-	while (indd != count - 1)
+	ind = 0;
+	while (ind < argc - 1)
 	{
-		count = 0;
-		min = ft_atoi(argv[count + 1]);
-		while (argv[++count])
-		{
-			if (min >= ft_atoi(argv[count]) && ft_atoi(argv[count]) >= min_old)
-			{
-				min = ft_atoi(argv[count]);
-				ind = count - 1;
-			}
-		}
-		min_old = min;
-		(*integer)[ind] = min;
-		(*index)[ind] = indd++;
+		counter = 0;
+		counter2 = 0;
+		(*integer)[ind] = ft_atoi(argv[ind + 1]);
+		while (++counter2 < argc)
+			if ((*integer)[ind] > ft_atoi(argv[counter2]))
+				counter++;
+		(*index)[ind] = counter + 1;
+		ind++;
 	}
 }
 
-static int	**args(char **argv)
+static int	**args(char **argv, int argc)
 {
 	int	counter;
 	int	**ret;
 
-	counter = 0;
+	counter = 1;
 	while (argv[counter])
 	{
-		if (!ft_isdigit(*(argv[counter])))
+		if (!ft_isdigit(*(argv[counter])) && *(argv[counter]) != '-')
 			return (NULL);
 		counter++;
 	}
@@ -75,24 +67,23 @@ static int	**args(char **argv)
 	ret[2] = NULL;
 	if (!ret[0] || !ret[1])
 		return (NULL);
-	put_ind(&ret[0], &ret[1], argv);
+	put_ind(&ret[0], &ret[1], argv, argc);
 	return (ret);
 }
 
-/*	char	**split;
-
- if (argc == 2)
-{
-	split = ft_split(argv[1], ' ');
-	arr = args(split);
-	freedom(&split);
-}*/
 t_stack	*get_args(int argc, char **argv)
 {
 	t_stack	*ret;
 	int		**arr;
+	int		index;
 
-	arr = args(argv);
-	ret = ft_lstnew(**arr, **(arr + 1));
+	index = 1;
+	arr = args(argv, argc);
+	ret = ft_lstnew(arr[0][0], arr[1][0]);
+	while (index < argc - 1)
+	{
+		ft_lstadd_back(&ret, ft_lstnew(arr[0][index], arr[1][index]));
+		index++;
+	}
 	return (ret);
 }

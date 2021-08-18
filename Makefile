@@ -2,7 +2,7 @@ NAME = push_swap
 LIBFT = libft.a
 LIB_DIR = ./libft/
 CFLAGS = -Wall -Wextra -Werror -MMD
-SRCS = 	sources/main.c
+SRCS = 	sources/main.c	sources/args.c
 OBJS = ${SRCS:.c=.o}
 DEP = $(SRCS:.c=.d)
 all: $(LIBFT) $(NAME)

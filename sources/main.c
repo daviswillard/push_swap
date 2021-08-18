@@ -16,6 +16,11 @@ int	main(int argc, char **argv)
 {
 	t_stack	*stk;
 
+	if (argc < 2)
+	{
+		ft_putstr_fd("Error\n", 1);
+		return (-1);
+	}
 	stk = get_args(argc, argv);
 	return (0);
 }
