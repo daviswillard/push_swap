@@ -2,7 +2,8 @@ NAME = push_swap
 LIBFT = libft.a
 LIB_DIR = ./libft/
 CFLAGS = -Wall -Wextra -Werror -MMD
-SRCS = 	sources/main.c	sources/args.c
+SRCS = 	sources/main.c	sources/args.c \
+		sources/push_utils.c
 OBJS = ${SRCS:.c=.o}
 DEP = $(SRCS:.c=.d)
 all: $(LIBFT) $(NAME)
@@ -10,7 +11,6 @@ all: $(LIBFT) $(NAME)
 	gcc $(CFLAGS) -c $< -o $@
 $(LIBFT):
 	$(MAKE) all -C $(LIB_DIR)
-	$(MAKE) bonus -C $(LIB_DIR)
 $(NAME): $(OBJS)
 	gcc $(CFLAGS) $(LIB_DIR)$(LIBFT) $(OBJS) -o $(NAME)
 clean:
