@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   algorithm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/18 11:00:32 by dwillard          #+#    #+#             */
-/*   Updated: 2021/08/18 11:00:34 by dwillard         ###   ########.fr       */
+/*   Created: 2021/08/21 17:02:39 by dwillard          #+#    #+#             */
+/*   Updated: 2021/08/21 17:02:40 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "../push_swap.h"
 
-# include <fcntl.h>
-# include "libft/libft.h"
-# include <stdio.h>
+static int	check_all(t_stack *lst)
+{
+	int	index;
 
-t_stack *get_args(int argc, char **argv);
+	index = 0;
+	while (lst)
+	{
+		if (index == lst->index)
+			index++;
+		else
+			return (0);
+		lst = lst->next;
+	}
+	return (1);
+}
 
-void	swap(t_stack **lst);
+char	**algs(t_stack **lst)
+{
+	char	**arr;
 
-void	push(t_stack **lst_a, t_stack **lst_b);
 
-void	rotate(t_stack **lst_a);
 
-void	r_rotate(t_stack **lst);
-
-char	**algs(t_stack **lst);
-
-#endif
+	return (arr);
+}

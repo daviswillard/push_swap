@@ -41,7 +41,7 @@ static void	put_ind(int **integer, int **index, char **argv, int argc)
 		while (++counter2 < argc)
 			if ((*integer)[ind] > ft_atoi(argv[counter2]))
 				counter++;
-		(*index)[ind] = counter + 1;
+		(*index)[ind] = counter;
 		ind++;
 	}
 }

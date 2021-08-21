@@ -16,4 +16,4 @@ add_executable(
         libft/ft_split.c
         push_swap.h
         sources/args.c
-        sources/push_utils.c)
+        sources/push_utils.c sources/algos.c)

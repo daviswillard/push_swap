@@ -17,9 +17,6 @@ int	main(int argc, char **argv)
 {
 	t_stack	*stka;
 	t_stack	*stkb;
-	t_stack *temp;
-
-	int counter = 0;
 
 	if (argc < 2)
 	{
@@ -29,3 +26,5 @@ int	main(int argc, char **argv)
 	stka = get_args(argc, argv);
 	return (0);
 }
+
+
