@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/21 17:02:39 by dwillard          #+#    #+#             */
-/*   Updated: 2021/08/21 17:02:40 by dwillard         ###   ########.fr       */
+/*   Created: 2021/04/17 14:04:07 by dwillard          #+#    #+#             */
+/*   Updated: 2021/04/17 15:40:46 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-static int	check_all(t_stack *lst)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int	index;
+	char				*substr;
+	int					index;
+	unsigned int		length;
 
+	length = ft_strlen(s);
 	index = 0;
-	while (lst)
+	substr = malloc(sizeof(*substr) * (len) + 1);
+	if (substr == NULL)
+		return (NULL);
+	while (s[start] && len > 0 && start < length)
 	{
-		if (index == lst->index)
-			index++;
-		else
-			return (0);
-		lst = lst->next;
+		substr[index++] = s[start++];
+		len--;
 	}
-	return (1);
-}
-
-char	**algs(t_stack **lst)
-{
-	char	**arr;
-
-
-	return (arr);
+	substr[index] = 0;
+	return (substr);
 }

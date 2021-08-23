@@ -14,7 +14,7 @@
 # define PUSH_SWAP_H
 
 # include <fcntl.h>
-# include "libft/libft.h"
+# include "printf/ft_printf.h"
 # include <stdio.h>
 
 t_stack *get_args(int argc, char **argv);

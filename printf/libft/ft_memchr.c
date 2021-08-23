@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/21 17:02:39 by dwillard          #+#    #+#             */
-/*   Updated: 2021/08/21 17:02:40 by dwillard         ###   ########.fr       */
+/*   Created: 2021/04/21 15:41:54 by dwillard          #+#    #+#             */
+/*   Updated: 2021/04/24 19:09:01 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-static int	check_all(t_stack *lst)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int	index;
+	const char					*ret;
+	size_t						ind;
 
-	index = 0;
-	while (lst)
+	ret = s;
+	ind = 0;
+	if (c > 255)
+		c %= 256;
+	while (ind < n)
 	{
-		if (index == lst->index)
-			index++;
-		else
-			return (0);
-		lst = lst->next;
+		if (ret[ind] == c)
+			return ((unsigned char *)(ret + ind));
+		ind++;
 	}
-	return (1);
-}
-
-char	**algs(t_stack **lst)
-{
-	char	**arr;
-
-
-	return (arr);
+	return (NULL);
 }

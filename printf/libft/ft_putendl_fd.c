@@ -1,37 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/21 17:02:39 by dwillard          #+#    #+#             */
-/*   Updated: 2021/08/21 17:02:40 by dwillard         ###   ########.fr       */
+/*   Created: 2021/04/21 12:54:35 by dwillard          #+#    #+#             */
+/*   Updated: 2021/04/22 20:15:58 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-static int	check_all(t_stack *lst)
+void	ft_putendl_fd(char *s, int fd)
 {
-	int	index;
-
-	index = 0;
-	while (lst)
-	{
-		if (index == lst->index)
-			index++;
-		else
-			return (0);
-		lst = lst->next;
-	}
-	return (1);
-}
-
-char	**algs(t_stack **lst)
-{
-	char	**arr;
-
-
-	return (arr);
+	ft_putstr_fd(s, fd);
+	write(fd, "\n", 1);
 }

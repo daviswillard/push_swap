@@ -1,37 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/21 17:02:39 by dwillard          #+#    #+#             */
-/*   Updated: 2021/08/21 17:02:40 by dwillard         ###   ########.fr       */
+/*   Created: 2021/04/22 17:49:23 by dwillard          #+#    #+#             */
+/*   Updated: 2021/04/24 17:53:47 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-static int	check_all(t_stack *lst)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	index;
-
-	index = 0;
-	while (lst)
+	while ((*s1 || *s2) && n)
 	{
-		if (index == lst->index)
-			index++;
-		else
-			return (0);
-		lst = lst->next;
+		if (*s1++ != *s2++)
+			return (*(unsigned char *)(s1 - 1) - *(unsigned char *)(s2 - 1));
+		n--;
 	}
-	return (1);
-}
-
-char	**algs(t_stack **lst)
-{
-	char	**arr;
-
-
-	return (arr);
+	return (0);
 }

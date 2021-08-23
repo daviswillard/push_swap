@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/21 17:02:39 by dwillard          #+#    #+#             */
-/*   Updated: 2021/08/21 17:02:40 by dwillard         ###   ########.fr       */
+/*   Created: 2021/04/21 15:21:22 by dwillard          #+#    #+#             */
+/*   Updated: 2021/04/22 18:20:54 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-static int	check_all(t_stack *lst)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	int	index;
+	unsigned char	ch;
+	unsigned char	*ret;
+	size_t			ind;
 
-	index = 0;
-	while (lst)
+	ind = 0;
+	ch = c;
+	ret = b;
+	while (ind < len)
 	{
-		if (index == lst->index)
-			index++;
-		else
-			return (0);
-		lst = lst->next;
+		ret[ind] = ch;
+		ind++;
 	}
-	return (1);
-}
-
-char	**algs(t_stack **lst)
-{
-	char	**arr;
-
-
-	return (arr);
+	return (b);
 }

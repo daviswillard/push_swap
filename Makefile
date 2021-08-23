@@ -1,23 +1,23 @@
 NAME = push_swap
-LIBFT = libft.a
-LIB_DIR = ./libft/
+PRINTF = libftprintf.a
+PRINTF_DIR = ./printf/
 CFLAGS = -Wall -Wextra -Werror -MMD
 SRCS = 	sources/main.c	sources/args.c \
 		sources/push_utils.c
 OBJS = ${SRCS:.c=.o}
 DEP = $(SRCS:.c=.d)
-all: $(LIBFT) $(NAME)
+all: $(PRINTF) $(NAME)
 .c.o:
 	gcc $(CFLAGS) -c $< -o $@
-$(LIBFT):
-	$(MAKE) all -C $(LIB_DIR)
+$(PRINTF):
+	$(MAKE) all -sC $(PRINTF_DIR)
 $(NAME): $(OBJS)
-	gcc $(CFLAGS) $(LIB_DIR)$(LIBFT) $(OBJS) -o $(NAME)
+	gcc $(CFLAGS) $(PRINTF_DIR)$(PRINTF) $(OBJS) -o $(NAME)
 clean:
-	$(MAKE) clean -sC $(LIB_DIR)
+	$(MAKE) clean -sC $(PRINTF_DIR)
 	rm -rf $(OBJS) $(DEP)
 fclean: clean
-	$(MAKE) fclean -sC $(LIB_DIR)
+	$(MAKE) fclean -sC $(PRINTF_DIR)
 	rm -rf $(NAME)
 re: fclean all
 .PHONY: all clean fclean re

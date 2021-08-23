@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/21 17:02:39 by dwillard          #+#    #+#             */
-/*   Updated: 2021/08/21 17:02:40 by dwillard         ###   ########.fr       */
+/*   Created: 2021/04/27 17:34:35 by dwillard          #+#    #+#             */
+/*   Updated: 2021/04/27 17:35:13 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-static int	check_all(t_stack *lst)
+void	ft_lstadd_back(t_stack **lst, t_stack *new)
 {
-	int	index;
+	t_stack	*temp;
 
-	index = 0;
-	while (lst)
+	temp = *lst;
+	if (!new || !lst)
+		return ;
+	else if (!*lst)
+		*lst = new;
+	else
 	{
-		if (index == lst->index)
-			index++;
-		else
-			return (0);
-		lst = lst->next;
+		while (temp->next != NULL)
+			temp = temp->next;
+		temp->next = new;
 	}
-	return (1);
-}
-
-char	**algs(t_stack **lst)
-{
-	char	**arr;
-
-
-	return (arr);
 }

@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/21 17:02:39 by dwillard          #+#    #+#             */
-/*   Updated: 2021/08/21 17:02:40 by dwillard         ###   ########.fr       */
+/*   Created: 2021/04/22 17:15:01 by dwillard          #+#    #+#             */
+/*   Updated: 2021/04/24 17:47:12 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-static int	check_all(t_stack *lst)
+char	*ft_strrchr(const char *s, int c)
 {
-	int	index;
+	int		ind;
+	char	ch;
 
-	index = 0;
-	while (lst)
+	ch = c;
+	ind = 0;
+	while (*s)
 	{
-		if (index == lst->index)
-			index++;
-		else
-			return (0);
-		lst = lst->next;
+		s++;
+		ind++;
 	}
-	return (1);
-}
-
-char	**algs(t_stack **lst)
-{
-	char	**arr;
-
-
-	return (arr);
+	while (ind)
+	{
+		if (*s-- == ch)
+			return ((char *)(s + 1));
+		ind--;
+	}
+	if (*s == ch)
+		return ((char *)s);
+	return (NULL);
 }

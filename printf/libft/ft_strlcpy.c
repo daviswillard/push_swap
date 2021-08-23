@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/21 17:02:39 by dwillard          #+#    #+#             */
-/*   Updated: 2021/08/21 17:02:40 by dwillard         ###   ########.fr       */
+/*   Created: 2021/04/21 16:39:30 by dwillard          #+#    #+#             */
+/*   Updated: 2021/04/24 17:49:13 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-static int	check_all(t_stack *lst)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	int	index;
+	size_t	ind;
+	size_t	len;
 
-	index = 0;
-	while (lst)
+	ind = 0;
+	len = ft_strlen(src);
+	if (!src)
+		return (len);
+	while (ind < dstsize)
 	{
-		if (index == lst->index)
-			index++;
-		else
-			return (0);
-		lst = lst->next;
+		dst[ind] = src[ind];
+		if (!src[ind])
+			return (len);
+		if (ind == dstsize - 1)
+		{
+			dst[ind] = '\0';
+			return (len);
+		}
+		ind++;
 	}
-	return (1);
-}
-
-char	**algs(t_stack **lst)
-{
-	char	**arr;
-
-
-	return (arr);
+	return (len);
 }

@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/21 17:02:39 by dwillard          #+#    #+#             */
-/*   Updated: 2021/08/21 17:02:40 by dwillard         ###   ########.fr       */
+/*   Created: 2021/04/22 19:41:09 by dwillard          #+#    #+#             */
+/*   Updated: 2021/04/22 19:47:11 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-static int	check_all(t_stack *lst)
+char	*ft_strdup(const char *s1)
 {
-	int	index;
+	char	*ret;
+	int		ind;
 
-	index = 0;
-	while (lst)
-	{
-		if (index == lst->index)
-			index++;
-		else
-			return (0);
-		lst = lst->next;
-	}
-	return (1);
-}
-
-char	**algs(t_stack **lst)
-{
-	char	**arr;
-
-
-	return (arr);
+	ind = 0;
+	ret = malloc(sizeof(*ret) * ft_strlen(s1) + 1);
+	if (ret == NULL)
+		return (NULL);
+	while (*s1)
+		ret[ind++] = *s1++;
+	ret[ind] = 0;
+	return (ret);
 }

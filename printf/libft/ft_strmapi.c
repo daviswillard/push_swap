@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/21 17:02:39 by dwillard          #+#    #+#             */
-/*   Updated: 2021/08/21 17:02:40 by dwillard         ###   ########.fr       */
+/*   Created: 2021/04/20 20:47:11 by dwillard          #+#    #+#             */
+/*   Updated: 2021/04/21 12:28:32 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include <stdlib.h>
 
-static int	check_all(t_stack *lst)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int	index;
+	char	*str;
+	int		ind;
 
-	index = 0;
-	while (lst)
+	ind = 0;
+	while (s[ind])
+		ind++;
+	if (s == NULL || f == NULL)
+		return (NULL);
+	str = malloc(sizeof(*s) * ind + 1);
+	ind = 0;
+	if (str == NULL)
+		return (NULL);
+	while (s[ind])
 	{
-		if (index == lst->index)
-			index++;
-		else
-			return (0);
-		lst = lst->next;
+		str[ind] = f(ind, s[ind]);
+		ind++;
 	}
-	return (1);
-}
-
-char	**algs(t_stack **lst)
-{
-	char	**arr;
-
-
-	return (arr);
+	str[ind] = 0;
+	return (str);
 }

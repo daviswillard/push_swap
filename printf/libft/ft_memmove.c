@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/21 17:02:39 by dwillard          #+#    #+#             */
-/*   Updated: 2021/08/21 17:02:40 by dwillard         ###   ########.fr       */
+/*   Created: 2021/04/21 15:23:21 by dwillard          #+#    #+#             */
+/*   Updated: 2021/04/24 18:51:37 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-static int	check_all(t_stack *lst)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int	index;
+	char		*ret;
+	const char	*ssrc;
 
-	index = 0;
-	while (lst)
+	ret = dst;
+	ssrc = src;
+	if (ret == ssrc)
+		return (dst);
+	if (ret > ssrc)
 	{
-		if (index == lst->index)
-			index++;
-		else
-			return (0);
-		lst = lst->next;
+		ret = ret + (len - 1);
+		ssrc = ssrc + (len - 1);
+		while (len-- > 0)
+			*ret-- = *ssrc--;
+		return (dst);
 	}
-	return (1);
-}
-
-char	**algs(t_stack **lst)
-{
-	char	**arr;
-
-
-	return (arr);
+	while (len-- > 0)
+		*ret++ = *ssrc++;
+	return (dst);
 }

@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm.c                                        :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/21 17:02:39 by dwillard          #+#    #+#             */
-/*   Updated: 2021/08/21 17:02:40 by dwillard         ###   ########.fr       */
+/*   Created: 2021/04/21 15:10:57 by dwillard          #+#    #+#             */
+/*   Updated: 2021/04/24 17:27:06 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-static int	check_all(t_stack *lst)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	int	index;
+	unsigned char		cc;
+	size_t				ind;
+	unsigned char		*ret;
+	const unsigned char	*ssrc;
 
-	index = 0;
-	while (lst)
+	ret = dst;
+	ind = 0;
+	cc = c;
+	ssrc = src;
+	while (ind < n)
 	{
-		if (index == lst->index)
-			index++;
-		else
-			return (0);
-		lst = lst->next;
+		ret[ind] = ssrc[ind];
+		ind++;
+		if (ssrc[ind - 1] == cc)
+			return (dst + ind);
 	}
-	return (1);
-}
-
-char	**algs(t_stack **lst)
-{
-	char	**arr;
-
-
-	return (arr);
+	return (NULL);
 }
