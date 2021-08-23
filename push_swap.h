@@ -27,6 +27,8 @@ void	rotate(t_stack **lst_a);
 
 void	r_rotate(t_stack **lst);
 
-char	**algs(t_stack **lst);
+char	*greed(t_stack **lsta, t_stack **lstb);
+
+void	*algs(t_stack **lsta, t_stack **lstb);
 
 #endif

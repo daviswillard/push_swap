@@ -16,7 +16,7 @@ static int	check_all(t_stack *lst)
 {
 	int	index;
 
-	index = 0;
+	index = lst->index;
 	while (lst)
 	{
 		if (index == lst->index)
@@ -28,10 +28,8 @@ static int	check_all(t_stack *lst)
 	return (1);
 }
 
-char	**algs(t_stack **lst)
+void	*algs(t_stack **lsta, t_stack **lstb)
 {
-	char	**arr;
-
-
-	return (arr);
+	greed(lsta, lstb);
+	return (NULL);
 }

@@ -24,7 +24,6 @@ int	main(int argc, char **argv)
 		return (-1);
 	}
 	stka = get_args(argc, argv);
+	algs(&stka, &stkb);
 	return (0);
 }
-
-
