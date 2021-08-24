@@ -28,8 +28,9 @@ static int	check_all(t_stack *lst)
 	return (1);
 }
 
-void	*algs(t_stack **lsta, t_stack **lstb)
+void	*algs(int argc, t_stack **lsta, t_stack **lstb)
 {
-	greed(lsta, lstb);
+	if (argc >= 100)
+		greed(argc, lsta, lstb);
 	return (NULL);
 }
