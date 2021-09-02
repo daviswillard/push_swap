@@ -17,17 +17,17 @@
 # include "libft/libft.h"
 # include <stdio.h>
 
-t_stack *get_args(int argc, char **argv);
+void	swap(t_stack **lst, int out);
 
-void	swap(t_stack **lst);
+void	push(t_stack **lst_a, t_stack **lst_b, int out);
 
-void	push(t_stack **lst_a, t_stack **lst_b);
+void	rotate(t_stack **lst_a, int out);
 
-void	rotate(t_stack **lst_a);
+void	r_rotate(t_stack **lst, int out);
 
-void	r_rotate(t_stack **lst);
+t_stack	*get_args(int argc, char **argv);
 
-char	*greed(int argc, t_stack **lsta, t_stack **lstb);
+int		greed(int argc, t_stack **lsta, t_stack **lstb);
 
 void	*algs(int argc, t_stack **lsta, t_stack **lstb);
 

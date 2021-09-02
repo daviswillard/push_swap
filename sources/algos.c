@@ -12,6 +12,19 @@
 
 #include "../push_swap.h"
 
+/*static char	**crt_arr(int argc)
+{
+	char	**ret;
+	int		cntr;
+
+	cntr = 0;
+	ret = malloc(sizeof(ret));
+	if (!ret)
+		exit(-1);
+	while (cntr < argc)
+	return (ret);
+}*/
+
 static int	check_all(t_stack *lst)
 {
 	int	index;

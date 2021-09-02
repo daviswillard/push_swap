@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-void	swap(t_stack **lst)
+void	swap(t_stack **lst, int out)
 {
 	t_stack	*temp;
 
@@ -20,9 +20,17 @@ void	swap(t_stack **lst)
 	(*lst)->next = temp->next;
 	temp->next = (*lst);
 	(*lst) = temp;
+	if (!out)
+		ft_putendl_fd("sa", 1);
+	else if (out == 1)
+		ft_putendl_fd("sb", 1);
+	else if (out == 2)
+		ft_putendl_fd("ss", 1);
+	else
+		return ;
 }
 
-void	push(t_stack **lst_a, t_stack **lst_b)
+void	push(t_stack **lst_a, t_stack **lst_b, int out)
 {
 	t_stack	*temp;
 	t_stack	*temp2;
@@ -36,9 +44,15 @@ void	push(t_stack **lst_a, t_stack **lst_b)
 	temp2 = *lst_b;
 	*lst_b = temp;
 	(*lst_b)->next = temp2;
+	if (!out)
+		ft_putendl_fd("pa", 1);
+	else if (out == 1)
+		ft_putendl_fd("pb", 1);
+	else
+		return ;
 }
 
-void	rotate(t_stack **lst)
+void	rotate(t_stack **lst, int out)
 {
 	t_stack	*temp;
 	t_stack	*temp2;
@@ -50,9 +64,17 @@ void	rotate(t_stack **lst)
 	while (temp2->next)
 		temp2 = temp2->next;
 	temp2->next = temp;
+	if (!out)
+		ft_putendl_fd("ra", 1);
+	else if (out == 1)
+		ft_putendl_fd("rb", 1);
+	else if (out == 2)
+		ft_putendl_fd("rr", 1);
+	else
+		return ;
 }
 
-void	r_rotate(t_stack **lst)
+void	r_rotate(t_stack **lst, int out)
 {
 	t_stack	*temp;
 	t_stack	*temp2;
@@ -65,4 +87,12 @@ void	r_rotate(t_stack **lst)
 	temp2 = *lst;
 	*lst = temp;
 	(*lst)->next = temp2;
+	if (!out)
+		ft_putendl_fd("rra", 1);
+	else if (out == 1)
+		ft_putendl_fd("rrb", 1);
+	else if (out == 2)
+		ft_putendl_fd("rrr", 1);
+	else
+		return ;
 }

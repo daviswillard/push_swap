@@ -12,34 +12,98 @@
 
 #include "../push_swap.h"
 
-static void	finder(int cntr, int grp, int denom, t_stack **lsta, t_stack **lstb)
+static t_stack	*move(int pos, t_stack *temp)
 {
-	int		ind_first;
-	int		ind_last;
-	t_stack	temp;
+	int	mv;
 
-	temp = **lsta;
-	while (cntr < denom + 1)
+	mv = 0;
+	while (mv++ < pos)
 	{
-		while (temp.index >= grp * cntr && temp.index < grp * (cntr - 1))
-			temp = *temp.next;
-		ind_first = temp.index;
-		while (temp.next)
+		temp = temp->next;
+		if (temp == NULL)
 		{
-			if (temp.index < grp * cntr && temp.index >= grp * (cntr - 1))
-				ind_last = temp.index;
-			temp = *temp.next;
+			printf("Ошибка в t_stack *move");
+			exit (-1);
 		}
+	}
+	return (temp);
+}
+
+static void	only_first(int numb, int first, t_stack **lsta, t_stack **lstb)
+{
+	t_stack	*temp;
+	int		counter;
+
+	counter = 0;
+	temp = move(first, *lsta);
+	if (first > numb / 2)
+	{
+		while (numb - (first++) + 1 > 0)
+			r_rotate(lsta, 0);
+	}
+	else
+	{
+		while (first-- > 0)
+			rotate(lsta, 0);
 	}
 }
 
-char	*greed(int argc, t_stack **lsta, t_stack **lstb)
+static int	action(int first, int last, t_stack **lsta, t_stack **lstb)
 {
-	int		denom;
-	int		grp;
-	int		cntr;
+	int		numb;
+	t_stack	*temp;
 
-	denom = 5;
-	grp = 20;
-	cntr = 1;
+	temp = *lsta;
+	numb = 0;
+	while (temp)
+	{
+		numb++;
+		temp = temp->next;
+	}
+	if (first >= 0 && last < 0)
+		only_first(numb, first, lsta, lstb);
+	return (1);
+}
+
+static int	finder(int index, t_stack **lsta, t_stack **lstb)
+{
+	int		first;
+	int		last;
+	int		count;
+	t_stack	*temp;
+
+	first = -1;
+	last = -1;
+	count = 0;
+	temp = *lsta;
+	while (temp)
+	{
+		if (temp->index < index + 20 && temp->index >= index)
+		{
+			if (first == -1)
+				first = count;
+			else
+				last = count;
+		}
+		temp = temp->next;
+		count++;
+	}
+	if (first == -1 && last == -1)
+		return (0);
+	return (action(first, last, lsta, lstb));
+}
+
+int	greed(int argc, t_stack **lsta, t_stack **lstb)
+{
+	int	index;
+	int	key;
+
+	index = 0;
+	while (index < argc)
+	{
+		key = finder(index, lsta, lstb);
+		while (key)
+			key = finder(index, lsta, lstb);
+		index += 20;
+	}
 }
