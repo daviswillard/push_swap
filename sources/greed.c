@@ -6,7 +6,7 @@
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 17:50:06 by dwillard          #+#    #+#             */
-/*   Updated: 2021/08/24 17:50:11 by dwillard         ###   ########.fr       */
+/*   Updated: 2021/09/03 18:34:56 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_stack	*move(int pos, t_stack *temp)
 	return (temp);
 }
 
-static void	only_first(int numb, int first, t_stack **lsta, t_stack **lstb)
+void	only_first(int numb, int first, t_stack **lsta)
 {
 	t_stack	*temp;
 	int		counter;
@@ -61,7 +61,9 @@ static int	action(int first, int last, t_stack **lsta, t_stack **lstb)
 		temp = temp->next;
 	}
 	if (first >= 0 && last < 0)
-		only_first(numb, first, lsta, lstb);
+		only_first(numb, first, lsta);
+	else
+		gen_case(first, last, lsta, lstb);
 	return (1);
 }
 
@@ -106,4 +108,5 @@ int	greed(int argc, t_stack **lsta, t_stack **lstb)
 			key = finder(index, lsta, lstb);
 		index += 20;
 	}
+	return (0);
 }

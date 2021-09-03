@@ -6,7 +6,7 @@
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/21 17:02:39 by dwillard          #+#    #+#             */
-/*   Updated: 2021/08/21 17:02:40 by dwillard         ###   ########.fr       */
+/*   Updated: 2021/09/03 18:34:04 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,11 @@ static int	check_all(t_stack *lst)
 
 void	*algs(int argc, t_stack **lsta, t_stack **lstb)
 {
-	if (argc >= 100)
-		greed(argc, lsta, lstb);
+	if (!check_all(*lsta))
+	{
+		ft_putendl_fd("Error", 1);
+		exit(1);
+	}
+	greed(argc, lsta, lstb);
 	return (NULL);
 }

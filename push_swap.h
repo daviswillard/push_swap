@@ -6,7 +6,7 @@
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 11:00:32 by dwillard          #+#    #+#             */
-/*   Updated: 2021/08/18 11:00:34 by dwillard         ###   ########.fr       */
+/*   Updated: 2021/09/03 16:08:05 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ void	r_rotate(t_stack **lst, int out);
 t_stack	*get_args(int argc, char **argv);
 
 int		greed(int argc, t_stack **lsta, t_stack **lstb);
+
+void	only_first(int numb, int first, t_stack **lsta);
+
+void	gen_case(int first, int last, t_stack **lsta, t_stack **lstb);
 
 void	*algs(int argc, t_stack **lsta, t_stack **lstb);
 

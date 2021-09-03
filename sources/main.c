@@ -6,7 +6,7 @@
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 11:00:22 by dwillard          #+#    #+#             */
-/*   Updated: 2021/08/18 11:00:24 by dwillard         ###   ########.fr       */
+/*   Updated: 2021/09/03 18:38:16 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int argc, char **argv)
 	t_stack	*stka;
 	t_stack	*stkb;
 
+	stkb = NULL;
 	if (argc < 2)
 	{
 		ft_putstr_fd("Error\n", 1);
