@@ -6,7 +6,7 @@
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 14:54:19 by dwillard          #+#    #+#             */
-/*   Updated: 2021/09/03 18:22:33 by dwillard         ###   ########.fr       */
+/*   Updated: 2021/09/03 18:44:37 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	extrdy_b(t_stack **lstb, t_stack **lsta, int state)
 	}
 }
 
-static int	rdy_b(t_stack **lstb, t_stack **lsta)
+static void	rdy_b(t_stack **lstb, t_stack **lsta)
 {
 	int		indtmp;
 	int		counter;
@@ -53,7 +53,7 @@ static int	rdy_b(t_stack **lstb, t_stack **lsta)
 	temp = *lstb;
 	indtmp = (*lsta)->index;
 	if (!*lstb)
-		return (0);
+		return ;
 	while (temp && ++counter)
 	{
 		if ((!state || state == 2) && temp->index > indtmp)
@@ -63,7 +63,6 @@ static int	rdy_b(t_stack **lstb, t_stack **lsta)
 		temp = temp->next;
 	}
 	extrdy_b(lstb, lsta, state);
-	return (state);
 }
 
 void	gen_case(int first, int last, t_stack **lsta, t_stack **lstb)
