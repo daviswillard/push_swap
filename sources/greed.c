@@ -62,7 +62,7 @@ static int	finder(int index, t_stack **lsta, t_stack **lstb)
 	temp = *lsta;
 	while (temp)
 	{
-		if (temp->index < index + 20 && temp->index >= index)
+		if (temp->index < index + 5 && temp->index >= index)
 		{
 			if (first == -1)
 				first = count;
@@ -101,7 +101,8 @@ int	greed(int argc, t_stack **lsta, t_stack **lstb)
 		key = finder(index, lsta, lstb);
 		while (key && lst_len(*lsta) > 5)
 			key = finder(index, lsta, lstb);
-		index += 20;
+		if (lst_len(*lsta) <= 5)
+		index += 5;
 	}
 	return (0);
 }
