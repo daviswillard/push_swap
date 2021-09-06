@@ -31,6 +31,7 @@ static void	extrdy_b(t_stack **lstb, t_stack **lsta, int state)
 				counter1++;
 			if (temp->index < (*lsta)->index)
 				counter2++;
+			temp = temp->next;
 		}
 		if (counter1 > counter2)
 			while (counter1--)
@@ -41,7 +42,7 @@ static void	extrdy_b(t_stack **lstb, t_stack **lsta, int state)
 	}
 }
 
-static void	rdy_b(t_stack **lstb, t_stack **lsta)
+void	rdy_b(t_stack **lstb, t_stack **lsta)
 {
 	int		indtmp;
 	int		counter;
@@ -85,7 +86,6 @@ void	gen_case(int first, int last, t_stack **lsta, t_stack **lstb)
 			rotate(lsta, 0);
 	}
 	else
-		only_first(numb, first, lsta);
+		only_first(numb, first, lsta, lstb);
 	rdy_b(lstb, lsta);
-	push(lsta, lstb, 1);
 }

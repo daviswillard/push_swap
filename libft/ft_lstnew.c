@@ -19,13 +19,7 @@ t_stack	*ft_lstnew(int integer, int index)
 	new = malloc(sizeof(t_stack *));
 	if (!new)
 		return (NULL);
-	if (integer)
-		new->integer = integer;
-	else
-	{
-		ft_putstr_fd("Error\n", 1);
-		exit(1);
-	}
+	new->integer = integer;
 	new->index = index;
 	new->next = NULL;
 	return (new);

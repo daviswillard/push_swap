@@ -6,25 +6,11 @@
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 11:02:53 by dwillard          #+#    #+#             */
-/*   Updated: 2021/08/18 11:02:54 by dwillard         ###   ########.fr       */
+/*   Updated: 2021/09/06 15:47:01 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-/*static void	freedom(char ***ret)
-{
-	int	count;
-
-	count = 0;
-	while (*ret[count])
-	{
-		free(*ret[count]);
-		*ret[count++] = NULL;
-	}
-	free(*ret);
-	*ret = NULL;
-}*/
 
 static void	put_ind(int **integer, int **index, char **argv, int argc)
 {
@@ -60,7 +46,7 @@ static int	**args(char **argv, int argc)
 	}
 	ret = malloc(sizeof(ret));
 	if (!ret)
-		return (NULL);
+		exit(-1);
 	ret[0] = malloc(sizeof(int) * counter);
 	ret[1] = malloc(sizeof(int) * counter);
 	ret[2] = NULL;
@@ -78,6 +64,8 @@ t_stack	*get_args(int argc, char **argv)
 
 	index = 1;
 	arr = args(argv, argc);
+	if (arr == NULL)
+		exit(-1);
 	ret = ft_lstnew(arr[0][0], arr[1][0]);
 	while (index < argc - 1)
 	{

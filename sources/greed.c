@@ -6,36 +6,14 @@
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 17:50:06 by dwillard          #+#    #+#             */
-/*   Updated: 2021/09/03 18:44:36 by dwillard         ###   ########.fr       */
+/*   Updated: 2021/09/06 16:39:14 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static t_stack	*move(int pos, t_stack *temp)
+void	only_first(int numb, int first, t_stack **lsta, t_stack **lstb)
 {
-	int	mv;
-
-	mv = 0;
-	while (mv++ < pos)
-	{
-		temp = temp->next;
-		if (temp == NULL)
-		{
-			printf("Ошибка в t_stack *move");
-			exit (-1);
-		}
-	}
-	return (temp);
-}
-
-void	only_first(int numb, int first, t_stack **lsta)
-{
-	t_stack	*temp;
-	int		counter;
-
-	counter = 0;
-	temp = move(first, *lsta);
 	if (first > numb / 2)
 	{
 		while (numb - (first++) + 1 > 0)
@@ -46,6 +24,7 @@ void	only_first(int numb, int first, t_stack **lsta)
 		while (first-- > 0)
 			rotate(lsta, 0);
 	}
+	rdy_b(lstb, lsta);
 }
 
 static int	action(int first, int last, t_stack **lsta, t_stack **lstb)
@@ -61,9 +40,12 @@ static int	action(int first, int last, t_stack **lsta, t_stack **lstb)
 		temp = temp->next;
 	}
 	if (first >= 0 && last < 0)
-		only_first(numb, first, lsta);
-	else
+		only_first(numb, first, lsta, lstb);
+	else if (first >= 0 && last >= 0)
 		gen_case(first, last, lsta, lstb);
+	else
+		return (0);
+	push(lsta, lstb, 1);
 	return (1);
 }
 
@@ -95,6 +77,19 @@ static int	finder(int index, t_stack **lsta, t_stack **lstb)
 	return (action(first, last, lsta, lstb));
 }
 
+int	lst_len(t_stack *lst)
+{
+	int		ret_counter;
+
+	ret_counter = 0;
+	while (lst)
+	{
+		ret_counter++;
+		lst = lst->next;
+	}
+	return (ret_counter);
+}
+
 int	greed(int argc, t_stack **lsta, t_stack **lstb)
 {
 	int	index;
@@ -104,7 +99,7 @@ int	greed(int argc, t_stack **lsta, t_stack **lstb)
 	while (index < argc)
 	{
 		key = finder(index, lsta, lstb);
-		while (key)
+		while (key && lst_len(*lsta) > 5)
 			key = finder(index, lsta, lstb);
 		index += 20;
 	}

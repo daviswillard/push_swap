@@ -19,4 +19,7 @@ add_executable  (
         sources/push_utils.c
         sources/algos.c
         sources/greed.c
+        sources/main.c
+        sources/stkb.c
+        libft/ft_putendl_fd.c
                 )

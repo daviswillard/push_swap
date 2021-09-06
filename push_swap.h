@@ -29,7 +29,11 @@ t_stack	*get_args(int argc, char **argv);
 
 int		greed(int argc, t_stack **lsta, t_stack **lstb);
 
-void	only_first(int numb, int first, t_stack **lsta);
+int		lst_len(t_stack *lst);
+
+void	rdy_b(t_stack **lstb, t_stack **lsta);
+
+void	only_first(int numb, int first, t_stack **lsta, t_stack **lstb);
 
 void	gen_case(int first, int last, t_stack **lsta, t_stack **lstb);
 
