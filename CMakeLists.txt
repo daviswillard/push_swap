@@ -22,4 +22,4 @@ add_executable  (
         sources/main.c
         sources/stkb.c
         libft/ft_putendl_fd.c
-                )
+        sources/sort_a.c)

@@ -96,3 +96,16 @@ void	r_rotate(t_stack **lst, int out)
 	else
 		return ;
 }
+
+int	lst_len(t_stack *lst)
+{
+	int		ret_counter;
+
+	ret_counter = 0;
+	while (lst)
+	{
+		ret_counter++;
+		lst = lst->next;
+	}
+	return (ret_counter);
+}

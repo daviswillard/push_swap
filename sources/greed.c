@@ -77,19 +77,6 @@ static int	finder(int index, t_stack **lsta, t_stack **lstb)
 	return (action(first, last, lsta, lstb));
 }
 
-int	lst_len(t_stack *lst)
-{
-	int		ret_counter;
-
-	ret_counter = 0;
-	while (lst)
-	{
-		ret_counter++;
-		lst = lst->next;
-	}
-	return (ret_counter);
-}
-
 int	greed(int argc, t_stack **lsta, t_stack **lstb)
 {
 	int	index;
@@ -98,11 +85,18 @@ int	greed(int argc, t_stack **lsta, t_stack **lstb)
 	index = 0;
 	while (index < argc)
 	{
-		key = finder(index, lsta, lstb);
-		while (key && lst_len(*lsta) > 5)
+		while (lst_len(*lsta) > 5)
+		{
 			key = finder(index, lsta, lstb);
-		if (lst_len(*lsta) <= 5)
+			if (!key)
+				break ;
+		}
 		index += 5;
+		if (lst_len(*lsta) <= 5)
+		{
+			sorta(lsta, lstb);
+			return (0);
+		}
 	}
 	return (0);
 }

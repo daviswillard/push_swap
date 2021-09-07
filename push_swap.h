@@ -31,6 +31,8 @@ int		greed(int argc, t_stack **lsta, t_stack **lstb);
 
 int		lst_len(t_stack *lst);
 
+void	sorta(t_stack **lsta, t_stack **lstb);
+
 void	rdy_b(t_stack **lstb, t_stack **lsta);
 
 void	only_first(int numb, int first, t_stack **lsta, t_stack **lstb);

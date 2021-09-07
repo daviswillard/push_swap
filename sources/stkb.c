@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-static void	extrdy_b(t_stack **lstb, t_stack **lsta, int state)
+static void	extrdy_b(t_stack **lstb, t_stack **lsta)
 {
 	t_stack	*temp;
 	int		counter1;
@@ -21,25 +21,20 @@ static void	extrdy_b(t_stack **lstb, t_stack **lsta, int state)
 	counter1 = 0;
 	counter2 = 0;
 	temp = *lstb;
-	if (!state || state == 1 || state == 2)
-		return ;
-	else
+	while (temp)
 	{
-		while (temp)
-		{
-			if (temp->index > (*lsta)->index)
-				counter1++;
-			if (temp->index < (*lsta)->index)
-				counter2++;
-			temp = temp->next;
-		}
-		if (counter1 > counter2)
-			while (counter1--)
-				rotate(lstb, 1);
-		else
-			while (counter2--)
-				rotate(lstb, 0);
+		if (temp->index > (*lsta)->index)
+			counter1++;
+		if (temp->index < (*lsta)->index)
+			counter2++;
+		temp = temp->next;
 	}
+	if (counter1 > counter2)
+		while (counter1--)
+			rotate(lstb, 1);
+	else
+		while (counter2--)
+			rotate(lstb, 0);
 }
 
 void	rdy_b(t_stack **lstb, t_stack **lsta)
@@ -63,7 +58,8 @@ void	rdy_b(t_stack **lstb, t_stack **lsta)
 			state += 2;
 		temp = temp->next;
 	}
-	extrdy_b(lstb, lsta, state);
+	if (state == 3)
+		extrdy_b(lstb, lsta);
 }
 
 void	gen_case(int first, int last, t_stack **lsta, t_stack **lstb)
