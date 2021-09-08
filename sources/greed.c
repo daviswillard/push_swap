@@ -24,28 +24,23 @@ void	only_first(int numb, int first, t_stack **lsta, t_stack **lstb)
 		while (first-- > 0)
 			rotate(lsta, 0);
 	}
-	rdy_b(lstb, lsta);
 }
 
 static int	action(int first, int last, t_stack **lsta, t_stack **lstb)
 {
 	int		numb;
-	t_stack	*temp;
+	int		state;
 
-	temp = *lsta;
-	numb = 0;
-	while (temp)
-	{
-		numb++;
-		temp = temp->next;
-	}
+	numb = lst_len(*lsta);
 	if (first >= 0 && last < 0)
 		only_first(numb, first, lsta, lstb);
 	else if (first >= 0 && last >= 0)
 		gen_case(first, last, lsta, lstb);
 	else
 		return (0);
+	state = rdy_b(lsta, lstb);
 	push(lsta, lstb, 1);
+	sortb(lstb, state);
 	return (1);
 }
 
@@ -72,8 +67,6 @@ static int	finder(int index, t_stack **lsta, t_stack **lstb)
 		temp = temp->next;
 		count++;
 	}
-	if (first == -1 && last == -1)
-		return (0);
 	return (action(first, last, lsta, lstb));
 }
 

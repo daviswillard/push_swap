@@ -33,12 +33,14 @@ int		lst_len(t_stack *lst);
 
 void	sorta(t_stack **lsta, t_stack **lstb);
 
-void	rdy_b(t_stack **lstb, t_stack **lsta);
+int	rdy_b(t_stack **lsta, t_stack **lstb);
 
 void	only_first(int numb, int first, t_stack **lsta, t_stack **lstb);
 
 void	gen_case(int first, int last, t_stack **lsta, t_stack **lstb);
 
 void	*algs(int argc, t_stack **lsta, t_stack **lstb);
+
+void	sortb(t_stack **lst, int state);
 
 #endif

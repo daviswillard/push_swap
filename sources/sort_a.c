@@ -27,7 +27,7 @@ static void	casef(t_stack **lsta, t_stack *tmp)
 	}
 }
 
-static void	rdya(t_stack **lsta, t_stack **lstb, int counter)
+static void	rdy_a(t_stack **lsta, t_stack **lstb, int counter)
 {
 	int	len;
 	int	hold;
@@ -70,10 +70,10 @@ static void	get_b_back(t_stack **lsta, t_stack **lstb)
 	}
 	else
 	{
-		while (temp->index < (*lstb)->index && ++counter < lst_len(*lsta) &&
-		temp->next)
+		while (temp->index < (*lstb)->index && ++counter < lst_len(*lsta)
+			&& temp->next)
 			temp = temp->next;
-		rdya(lsta, lstb, counter);
+		rdy_a(lsta, lstb, counter);
 	}
 }
 
