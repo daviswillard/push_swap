@@ -85,7 +85,7 @@ int	greed(int argc, t_stack **lsta, t_stack **lstb)
 	index = 0;
 	while (index < argc)
 	{
-		while (lst_len(*lsta) > 5)
+		while (lst_len(*lsta) > 5 && index < argc)
 		{
 			key = finder(index, lsta, lstb);
 			if (!key)
@@ -93,10 +93,7 @@ int	greed(int argc, t_stack **lsta, t_stack **lstb)
 		}
 		index += 5;
 		if (lst_len(*lsta) <= 5)
-		{
 			sorta(lsta, lstb);
-			return (0);
-		}
 	}
 	return (0);
 }

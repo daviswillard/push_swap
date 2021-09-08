@@ -70,7 +70,8 @@ static void	get_b_back(t_stack **lsta, t_stack **lstb)
 	}
 	else
 	{
-		while (temp->index < (*lstb)->index && ++counter < lst_len(*lsta))
+		while (temp->index < (*lstb)->index && ++counter < lst_len(*lsta) &&
+		temp->next)
 			temp = temp->next;
 		rdya(lsta, lstb, counter);
 	}
