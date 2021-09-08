@@ -34,20 +34,20 @@ static void	rdy_a(t_stack **lsta, t_stack **lstb, int counter)
 
 	len = lst_len(*lsta);
 	hold = counter;
-	if (counter > len / 2)
+	if (counter <= len / 2)
 	{
-		while (len - counter++ + 1)
+		while (counter-- > 0)
 			r_rotate(lsta, 0);
 		push(lstb, lsta, 0);
-		while (counter-- != hold - 1)
+		while (counter++ < hold)
 			rotate(lsta, 0);
 	}
 	else
 	{
-		while (counter--)
+		while (counter-- > 0)
 			rotate(lsta, 0);
 		push(lstb, lsta, 0);
-		while (counter++ != hold)
+		while (counter++ < hold)
 			r_rotate(lsta, 0);
 	}
 }
@@ -62,25 +62,30 @@ static void	get_b_back(t_stack **lsta, t_stack **lstb)
 	while (temp->next)
 		temp = temp->next;
 	if ((*lstb)->index < (*lsta)->index)
-		push(lstb, lsta, 1);
-	else if (temp->index > (*lstb)->index)
+		push(lstb, lsta, 0);
+	else if (temp->index < (*lstb)->index)
 	{
-		push(lstb, lsta, 1);
-		r_rotate(lsta, 0);
+		push(lstb, lsta, 0);
+		rotate(lsta, 0);
 	}
 	else
 	{
-		while (temp->index < (*lstb)->index && ++counter < lst_len(*lsta)
-			&& temp->next)
+		temp = (*lsta);
+		while (temp)
+		{
+			if (temp->index > (*lstb)->index)
+				counter++;
 			temp = temp->next;
+		}
 		rdy_a(lsta, lstb, counter);
 	}
 }
 
-void	sorta(t_stack **lsta, t_stack **lstb)
+void	sorta(t_stack **lsta, t_stack **lstb, int argc)
 {
 	t_stack		*tmp;
 
+	(void)argc;
 	if (lst_len(*lsta) > 3)
 		while (lst_len(*lsta) != 3)
 			push(lsta, lstb, 1);
@@ -91,10 +96,12 @@ void	sorta(t_stack **lsta, t_stack **lstb)
 	{
 		if (tmp->index < tmp->next->index)
 			return ;
+		else if (tmp->index > tmp->next->index)
+			r_rotate(lsta, 0);
 		else
 		{
-			swap(lsta, 0);
 			rotate(lsta, 0);
+			swap(lsta, 0);
 		}
 	}
 	while (lst_len(*lsta) < 5)

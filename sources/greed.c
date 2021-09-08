@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-void	only_first(int numb, int first, t_stack **lsta, t_stack **lstb)
+static void	only_first(int numb, int first, t_stack **lsta)
 {
 	if (first > numb / 2)
 	{
@@ -29,18 +29,17 @@ void	only_first(int numb, int first, t_stack **lsta, t_stack **lstb)
 static int	action(int first, int last, t_stack **lsta, t_stack **lstb)
 {
 	int		numb;
-	int		state;
 
 	numb = lst_len(*lsta);
 	if (first >= 0 && last < 0)
-		only_first(numb, first, lsta, lstb);
+		only_first(numb, first, lsta);
 	else if (first >= 0 && last >= 0)
-		gen_case(first, last, lsta, lstb);
+		gen_case(first, last, lsta);
 	else
 		return (0);
-	state = rdy_b(lsta, lstb);
+	rdy_b(lsta, lstb);
 	push(lsta, lstb, 1);
-	sortb(lstb, state);
+	sortb(lstb);
 	return (1);
 }
 
@@ -57,7 +56,7 @@ static int	finder(int index, t_stack **lsta, t_stack **lstb)
 	temp = *lsta;
 	while (temp)
 	{
-		if (temp->index < index + 5 && temp->index >= index)
+		if (temp->index < index + 20 && temp->index >= index)
 		{
 			if (first == -1)
 				first = count;
@@ -84,9 +83,12 @@ int	greed(int argc, t_stack **lsta, t_stack **lstb)
 			if (!key)
 				break ;
 		}
-		index += 5;
+		index += 20;
 		if (lst_len(*lsta) <= 5)
-			sorta(lsta, lstb);
+		{
+			sorta(lsta, lstb, argc);
+			break ;
+		}
 	}
 	return (0);
 }

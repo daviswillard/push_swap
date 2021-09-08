@@ -4,7 +4,8 @@ LIB_DIR = ./libft/
 CFLAGS = -Wall -Wextra -Werror -MMD
 SRCS = 	sources/main.c	sources/args.c \
 		sources/push_utils.c sources/algos.c \
-		sources/greed.c sources/stkb.c
+		sources/greed.c sources/stkb.c \
+		sources/sort_a.c
 OBJS = ${SRCS:.c=.o}
 DEP = $(SRCS:.c=.d)
 all: $(LIBFT) $(NAME)
