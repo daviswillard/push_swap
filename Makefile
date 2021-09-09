@@ -5,7 +5,8 @@ CFLAGS = -Wall -Wextra -Werror -MMD
 SRCS = 	sources/main.c	sources/args.c \
 		sources/push_utils.c sources/algos.c \
 		sources/greed/greed.c sources/greed/stkb.c \
-		sources/greed/sort_a.c sources/bra/bra.c
+		sources/greed/sort_a.c sources/bra/bra.c \
+		sources/bra/indexw.c
 OBJS = ${SRCS:.c=.o}
 DEP = $(SRCS:.c=.d)
 all: $(LIBFT) $(NAME)

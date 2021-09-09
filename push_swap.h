@@ -45,6 +45,8 @@ int		bra(int argc, t_stack *lsta, t_stack *lstb);
 
 int		get_pos_ind(t_stack **lsta, int len);
 
+int		act_ind(int argc, t_stack *lsta, t_stack *lstb, int index);
+
 int		get_pos_grt(t_stack **lsta, int len);
 
 #endif
