@@ -27,6 +27,7 @@ typedef struct s_stack
 {
 	int				integer;
 	int				index;
+	int				move;
 	struct s_stack	*next;
 }	t_stack;
 

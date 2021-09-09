@@ -17,7 +17,7 @@ void	ft_lstadd_back(t_stack **lst, t_stack *new)
 	t_stack	*temp;
 
 	temp = *lst;
-	if (!new || !lst)
+	if (!new)
 		return ;
 	else if (!*lst)
 		*lst = new;

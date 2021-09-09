@@ -18,8 +18,9 @@ add_executable  (
         sources/args.c
         sources/push_utils.c
         sources/algos.c
-        sources/greed.c
+        sources/greed/greed.c
         sources/main.c
-        sources/stkb.c
+        sources/greed/stkb.c
         libft/ft_putendl_fd.c
-        sources/sort_a.c)
+        sources/greed/sort_a.c
+        sources/bra/bra.c sources/bra/get_pos_ind.c sources/bra/get_pos_grt.c)

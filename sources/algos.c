@@ -30,14 +30,12 @@ static int	check_all(t_stack *lst)
 
 void	*algs(int argc, t_stack **lsta, t_stack **lstb)
 {
-	t_stack	*temp;
-
-	temp = *lsta;
 	if (check_all(*lsta))
 	{
 		ft_putendl_fd("", 1);
 		exit(0);
 	}
-	greed(argc, lsta, lstb);
+//	greed(argc, lsta, lstb);
+	bra(argc, *lsta, *lstb);
 	return (NULL);
 }
