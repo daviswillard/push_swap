@@ -13,6 +13,28 @@
 #include "../push_swap.h"
 #include <stdio.h>
 
+t_stack	*ft_lstcpy(t_stack *base)
+{
+	t_stack	*copy;
+	t_stack	*temp;
+	t_stack	*temp2;
+
+	temp = base->next;
+	copy = ft_lstnew(base->integer, base->index);
+	if (!copy)
+		return (NULL);
+	temp2 = copy;
+	while (temp)
+	{
+		temp2->next = ft_lstnew(temp->integer, temp->index);
+		if (!temp2->next)
+			return (NULL);
+		temp = temp->next;
+		temp2 = temp2->next;
+	}
+	return (copy);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*stka;

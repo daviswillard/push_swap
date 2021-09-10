@@ -36,6 +36,6 @@ void	*algs(int argc, t_stack **lsta, t_stack **lstb)
 		exit(0);
 	}
 //	greed(argc, lsta, lstb);
-	bra(argc, *lsta, *lstb);
+	bra(*lsta, *lstb);
 	return (NULL);
 }

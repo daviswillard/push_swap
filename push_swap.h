@@ -17,6 +17,12 @@
 # include "libft/libft.h"
 # include <stdio.h>
 
+typedef struct s_ind
+{
+	int	loud;
+	int	val;
+}	t_int;
+
 void	swap(t_stack **lst, int out, int loud);
 
 void	push(t_stack **lst_a, t_stack **lst_b, int out, int loud);
@@ -26,6 +32,8 @@ void	rotate(t_stack **lst_a, int out, int loud);
 void	r_rotate(t_stack **lst, int out, int loud);
 
 int		lst_len(t_stack *lst);
+
+t_stack	*ft_lstcpy(t_stack *base); //mem alloc: check for leaks!
 
 t_stack	*get_args(int argc, char **argv);
 
@@ -41,12 +49,12 @@ void	sortb(t_stack **lst);
 
 void	*algs(int argc, t_stack **lsta, t_stack **lstb);
 
-int		bra(int argc, t_stack *lsta, t_stack *lstb);
+int		bra(t_stack *lsta, t_stack *lstb);
 
-int		get_pos_ind(t_stack **lsta, int len);
+int		get_pos_ind(t_stack **lsta, int len, t_int **ind);
 
-int		act_ind(int argc, t_stack *lsta, t_stack *lstb, int index);
+int		act_ind(t_stack *lsta, t_stack *lstb, int index, t_int *ind);
 
-int		get_pos_grt(t_stack **lsta, int len);
+int		get_pos_grt(t_stack **lsta, int len, t_int **ind);
 
 #endif
