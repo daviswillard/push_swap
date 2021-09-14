@@ -13,7 +13,7 @@ all: $(LIBFT) $(NAME)
 .c.o:
 	gcc $(CFLAGS) -c $< -o $@
 $(LIBFT):
-	$(MAKE) all -C $(LIB_DIR)
+	$(MAKE) all -sC $(LIB_DIR)
 $(NAME): $(OBJS)
 	gcc $(CFLAGS) $(LIB_DIR)$(LIBFT) $(OBJS) -o $(NAME)
 clean:
