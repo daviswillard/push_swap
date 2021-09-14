@@ -14,9 +14,20 @@
 
 static void	check_len(int *acts, t_stack **lsta, int len, t_int *ind)
 {
-	t_stack	*chk;
+	int		val;
+	int		val_sa;
 
-	chk = *lsta;
+	val = cycle_through(*lsta, *lsta, (*lsta)->index, len);
+	swap(lsta, 0, 0);
+	val_sa = cycle_through(*lsta, *lsta, (*lsta)->index, len);
+	if (val_sa > val)
+	{
+		(*acts)++;
+		if (ind->loud)
+			ft_putendl_fd("sa", 1);
+	}
+	else
+		swap(lsta, 0, 0);
 }
 
 int	act_ind(t_stack *lsta, t_stack *lstb, int index, t_int *ind)

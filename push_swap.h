@@ -53,6 +53,8 @@ int		bra(t_stack *lsta, t_stack *lstb);
 
 int		get_pos_ind(t_stack **lsta, int len, t_int **ind);
 
+int		cycle_through(t_stack *hold, t_stack *temp, int index, int len);
+
 int		act_ind(t_stack *lsta, t_stack *lstb, int index, t_int *ind);
 
 int		get_pos_grt(t_stack **lsta, int len, t_int **ind);

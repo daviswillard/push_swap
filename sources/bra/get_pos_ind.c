@@ -6,13 +6,13 @@
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 16:45:00 by dwillard          #+#    #+#             */
-/*   Updated: 2021/09/09 16:45:03 by dwillard         ###   ########.fr       */
+/*   Updated: 2021/09/14 12:50:52 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-static int	cycle_through(t_stack *hold, t_stack *temp, int index, int len)
+int	cycle_through(t_stack *hold, t_stack *temp, int index, int len)
 {
 	int	counter;
 	int	val;
