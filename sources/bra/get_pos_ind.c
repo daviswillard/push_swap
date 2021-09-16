@@ -77,15 +77,13 @@ static int	get_index(int val, int *arr, int len)
 
 int	get_pos_ind(t_stack **lsta, int len, t_int **ind)
 {
-	t_stack		*hold;
 	int			*arr;
 	int			val;
 
-	hold = *lsta;
 	arr = malloc(sizeof(*arr) * len);
 	if (!arr)
 		return (-1);
-	(*ind)->val = getting(len, &arr, hold);
+	(*ind)->val = getting(len, &arr, *lsta);
 	val = get_index((*ind)->val, arr, len);
 	free(arr);
 	return (val);

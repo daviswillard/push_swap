@@ -12,7 +12,7 @@
 
 #include "../../push_swap.h"
 
-static int	cycle_through(t_stack *hold, t_stack *temp, int integer, int len)
+static int	through_grt(t_stack *hold, t_stack *temp, int integer, int len)
 {
 	int	counter;
 	int	val;
@@ -52,7 +52,7 @@ static int	getting(int len, int **arr, t_stack *hold)
 			temp = temp->next;
 		integer = temp->integer;
 		temp = temp->next;
-		val = cycle_through(hold, temp, integer, len);
+		val = through_grt(hold, temp, integer, len);
 		*((*arr) + cur_pos) = val;
 		if (!max || val > max)
 			max = val;
