@@ -80,47 +80,6 @@ int	act_ind(t_stack *lsta, t_stack *lstb, int index, t_int *ind)
 	while (index--)
 		tmp = tmp->next;
 	acts = moves(tmp, &lsta, &lstb, ind);
+	acts += ind_deal(&lsta, &lstb, ind);
 	return (acts);
 }
-
-/*printf("index	%d, val	%d\n", index, ind->val);
-int	i = 0;
-t_stack *temp = *lsta;
-t_stack	*temp1 = *lstb;
-printf("%20s", "стэк а");
-printf("%21s", "стэк б\n");
-while (i < lst_len(*lsta) || i < lst_len(*lstb))
-{
-	if (temp)
-		printf("%15d", temp->index);
-	if (temp1)
-		printf("%15d", temp1->index);
-	if (temp)
-		temp = temp->next;
-	if (temp1)
-		temp1 = temp1->next;
-	printf("\n");
-	i++;
-}
-printf("количество действий %d\n", acts);*/
-
-/*printf("index	%d\n", index);
-int	i = 0;
-t_stack *temp = lsta;
-t_stack	*temp1 = lstb;
-printf("%20s", "стэк а");
-printf("%21s", "стэк б\n");
-while (i < lst_len(lsta) || i < lst_len(lstb))
-{
-	if (temp)
-		printf("%15d", temp->index);
-	if (temp1)
-		printf("%15d", temp1->index);
-	if (temp)
-		temp = temp->next;
-	if (temp1)
-		temp1 = temp1->next;
-	printf("\n");
-	i++;
-}
-printf("количество действий %d\n", acts);*/

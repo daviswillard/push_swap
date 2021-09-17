@@ -23,4 +23,4 @@ add_executable  (
         sources/greed/stkb.c
         libft/ft_putendl_fd.c
         sources/greed/sort_a.c
-        sources/bra/bra.c sources/bra/get_pos_ind.c sources/bra/get_pos_grt.c sources/bra/indexw.c)
+        sources/bra/bra.c sources/bra/get_pos_ind.c sources/bra/get_pos_grt.c sources/bra/indexw.c sources/bra/ind_deal.c)
