@@ -23,11 +23,11 @@ typedef struct s_ind
 	int	val;
 }	t_int;
 
-struct s_lowhi
+typedef struct s_lowhi
 {
 	int		low;
 	int		high;
-};
+}				t_lowhi;
 
 void	swap(t_stack **lst, int out, int loud);
 
@@ -40,6 +40,8 @@ void	r_rotate(t_stack **lst, int out, int loud);
 int		lst_len(t_stack *lst);
 
 t_stack	*ft_lstcpy(t_stack *base); //mem alloc: check for leaks!
+
+void	ft_lstclr(t_stack **list);
 
 t_stack	*get_args(int argc, char **argv);
 
@@ -64,6 +66,8 @@ int		cycle_through(t_stack *hold, t_stack *temp, int index, int len);
 int		act_ind(t_stack *lsta, t_stack *lstb, int index, t_int *ind);
 
 int		ind_deal(t_stack **lsta, t_stack **lstb, t_int *ind);
+
+t_lowhi	hilow(t_stack **lsta);
 
 int		get_pos_grt(t_stack **lsta, int len, t_int **ind);
 

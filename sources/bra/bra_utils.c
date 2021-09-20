@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   bra_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/22 19:37:42 by dwillard          #+#    #+#             */
-/*   Updated: 2021/04/22 19:41:03 by dwillard         ###   ########.fr       */
+/*   Created: 2021/09/20 19:24:36 by dwillard          #+#    #+#             */
+/*   Updated: 2021/09/20 19:24:37 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+#include "../../push_swap.h"
+
+t_lowhi	hilow(t_stack **lsta)
 {
-	void	*ret;
+	t_lowhi	edg;
+	t_stack	*tmp;
+	int		min;
+	int		max;
 
-	ret = malloc(count * size);
-	if (ret == NULL)
-		exit (1);
-	ft_bzero(ret, count * size);
-	return (ret);
+	tmp = *lsta;
+	min = tmp->index;
+	max = tmp->index;
+	while (tmp->next)
+	{
+		if (min > tmp->index)
+			min = tmp->index;
+		if (max < tmp->index)
+			max = tmp->index;
+		tmp = tmp->next;
+	}
+	edg.low = min;
+	edg.high = max;
+	return (edg);
 }
