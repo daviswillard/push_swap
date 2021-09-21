@@ -29,6 +29,10 @@ typedef struct s_lowhi
 	int		high;
 }				t_lowhi;
 
+int		max(int a, int b);
+
+int		min(int a, int b, int c, int d);
+
 void	swap(t_stack **lst, int out, int loud);
 
 void	push(t_stack **lst_a, t_stack **lst_b, int out, int loud);
@@ -68,6 +72,10 @@ int		act_ind(t_stack *lsta, t_stack *lstb, int index, t_int *ind);
 int		ind_deal(t_stack **lsta, t_stack **lstb, t_int *ind);
 
 t_lowhi	hilow(t_stack **lsta);
+
+int		*moves_to_a_2(t_stack *lsta, int index);
+
+int		*moves_to_a(t_stack *lsta);
 
 int		get_pos_grt(t_stack **lsta, int len, t_int **ind);
 

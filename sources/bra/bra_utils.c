@@ -10,8 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../../push_swap.h"
+
+int	max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	else
+		return (b);
+}
+
+int	min(int a, int b, int c, int d)
+{
+	if (a <= b && a <= c && a <= d)
+		return (a);
+	else if (b <= a && b <= c && b <= d)
+		return (b);
+	else if (c <= b && c <= a && c <= d)
+		return (c);
+	else if (d <= b && d <= c && a >= d)
+		return (d);
+	else
+		exit(1);
+}
 
 t_lowhi	hilow(t_stack **lsta)
 {

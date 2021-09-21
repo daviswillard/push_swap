@@ -11,59 +11,35 @@
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
-
-/*mem is allocated in this function: be careful!*/
-
-//пара функций, которые должны посчитать кол-во ходов для сортировки стэка а
-
-static int	*moves_to_a_2(t_stack *lsta, int index)
+/*
+ * mv[0] - ra;
+ * mv[1] - rra;
+ * mv[2] - rb;
+ * mv[3] - rrb;
+ */
+static int	decide_action(t_stack *lsta, t_stack *lstb, int *mv)
 {
-	int		*moves;
-	int		len;
-	t_stack	*temp;
-	t_stack	*temp2;
+	int		arr[4];
 
-	len = lst_len(lsta);
-	temp = ft_lstcpy(lsta);
-	temp2 = ft_lstcpy(lsta);
-	moves = ft_calloc(2, 4);
-	if (temp->index < index)
-		while (temp->index < index && moves[0]++ > -1)
-			rotate(&temp, 0, 0);
-	else
-	{
-		while (temp->index > index && moves[0]++ > -1)
-			rotate(&temp, 0, 0);
-		while (temp->index < index && moves[0]++ > -1)
-			rotate(&temp, 0, 0);
-	}
-	ft_lstclr(&temp);
-	ft_lstclr(&temp2);
-	return (moves);
+	arr[0] = max(mv[0], mv[2]);
+	arr[1] = mv[0] + mv[3];
+	arr[2] = max(mv[1], mv[3]);
+	arr[3] = mv[1] + mv[2];
+	free(mv);
+	return (min(arr[0], arr[1], arr[2], arr[3]));
 }
 
-static int	*moves_to_a(t_stack *lsta)
+static int	*moves_to_b(t_stack *lstb, int index, int *moves)
 {
-	int		min;
-	int		*moves;
 	t_stack	*temp;
 	t_stack	*temp2;
 
-	min = lst_len(lsta + 1);
-	temp = ft_lstcpy(lsta);
-	moves = ft_calloc(2, 4);
-	temp2 = temp;
-	while (temp2)
-	{
-		if (min > temp2->index)
-			min = temp2->index;
-		temp2 = temp2->next;
-	}
-	temp2 = ft_lstcpy(lsta);
-	while (temp->index != min && moves[0]++ > -1)
-		r_rotate(&temp, 1, 0);
-	while (temp->index != min && moves[1]++ > -1)
-		rotate(&temp, 0, 0);
+	temp = ft_lstcpy(lstb);
+	temp2 = ft_lstcpy(lstb);
+	while (temp->index != index && moves[2]++ > -1)
+		rotate(&temp, 1, 0);
+	while (temp2->index != index && moves[3]++ > -1)
+		r_rotate(&temp2, 1, 0);
 	ft_lstclr(&temp);
 	ft_lstclr(&temp2);
 	return (moves);
@@ -71,18 +47,24 @@ static int	*moves_to_a(t_stack *lsta)
 
 static int	marker(t_stack **lsta, t_stack **lstb, int mark, int index)
 {
-	t_stack	*temp;
 	int		t_index;
+	int		*mv;
+	t_stack	*temp;
 
 	t_index = index;
 	temp = *lstb;
-	while (t_index--)
+	while (t_index)
+	{
 		temp = temp->next;
+		t_index--;
+	}
 	if (mark)
-		moves_to_a(*lsta);
+		mv = moves_to_a(*lsta);
 	else
-		moves_to_a_2(*lsta, temp->index);
-	return (0);
+		mv = moves_to_a_2(*lsta, temp->index);
+	mv = moves_to_b(*lstb, temp->index, mv);
+	t_index = decide_action(*lsta, *lstb, mv);
+	return (t_index);
 }
 
 static int	get_act(t_stack **lsta, t_stack **lstb, int *arr, t_int *ind)
@@ -97,14 +79,17 @@ static int	get_act(t_stack **lsta, t_stack **lstb, int *arr, t_int *ind)
 	index = 0;
 	while (temp)
 	{
-		if (temp->index < edg.low)
+		if (temp->index < edg.low || temp->index > edg.high)
 			arr[index] = marker(lsta, lstb, -1, index);
-		else if (temp->index > edg.high)
-			arr[index] = marker(lsta, lstb, 1, index);
 		else
 			arr[index] = marker(lsta, lstb, 0, index);
 		index++;
 		temp = temp->next;
+	}
+	while (index > -1)
+	{
+		printf("index = %d\nvalue = %d\n\n", index, arr[index]);
+		index--;
 	}
 	return (acts);
 }
@@ -114,8 +99,9 @@ int	ind_deal(t_stack **lsta, t_stack **lstb, t_int *ind)
 	int		acts;
 	int		*arr;
 
-	arr = malloc(sizeof(int) * lst_len(*lstb));
-	while (*lstb)
+	arr = ft_calloc(lst_len(*lstb), sizeof(int));
+	acts = 0;
+//	while (*lstb)
 		acts += get_act(lsta, lstb, arr, ind);
 	free(arr);
 	return (acts);

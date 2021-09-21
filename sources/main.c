@@ -40,13 +40,13 @@ t_stack	*ft_lstcpy(t_stack *base)
 	temp = base->next;
 	copy = ft_lstnew(base->integer, base->index);
 	if (!copy)
-		return (NULL);
+		exit(1);
 	temp2 = copy;
 	while (temp)
 	{
 		temp2->next = ft_lstnew(temp->integer, temp->index);
 		if (!temp2->next)
-			return (NULL);
+			exit(1);
 		temp = temp->next;
 		temp2 = temp2->next;
 	}

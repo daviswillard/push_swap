@@ -30,4 +30,5 @@ add_executable  (
         sources/bra/indexw.c
         sources/bra/ind_deal.c
         sources/bra/bra_utils.c
-                    )
+        libft/ft_bzero.c
+        sources/bra/moves_to_a.c)
