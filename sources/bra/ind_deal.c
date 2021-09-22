@@ -16,6 +16,10 @@
  * mv[1] - rra;
  * mv[2] - rb;
  * mv[3] - rrb;
+ * arr[0] - rr + ra/rb;
+ * arr[1] - ra + rrb;
+ * arr[2] - rrr + rra/rrb;
+ * arr[3] - rra + ra;
  */
 static int	decide_action(t_stack *lsta, t_stack *lstb, int *mv)
 {
@@ -27,22 +31,6 @@ static int	decide_action(t_stack *lsta, t_stack *lstb, int *mv)
 	arr[3] = mv[1] + mv[2];
 	free(mv);
 	return (min(arr[0], arr[1], arr[2], arr[3]));
-}
-
-static int	*moves_to_b(t_stack *lstb, int index, int *moves)
-{
-	t_stack	*temp;
-	t_stack	*temp2;
-
-	temp = ft_lstcpy(lstb);
-	temp2 = ft_lstcpy(lstb);
-	while (temp->index != index && moves[2]++ > -1)
-		rotate(&temp, 1, 0);
-	while (temp2->index != index && moves[3]++ > -1)
-		r_rotate(&temp2, 1, 0);
-	ft_lstclr(&temp);
-	ft_lstclr(&temp2);
-	return (moves);
 }
 
 static int	marker(t_stack **lsta, t_stack **lstb, int mark, int index)

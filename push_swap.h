@@ -77,6 +77,8 @@ int		*moves_to_a_2(t_stack *lsta, int index);
 
 int		*moves_to_a(t_stack *lsta);
 
+int		*moves_to_b(t_stack *lstb, int index, int *moves);
+
 int		get_pos_grt(t_stack **lsta, int len, t_int **ind);
 
 #endif

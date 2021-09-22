@@ -12,8 +12,10 @@
 
 #include "../../push_swap.h"
 
-/*пара функций, считающих шаги для сортировки стэка а при использовании
- * rotate и r_rotate соответственно*/
+/*
+ * пара функций, считающих шаги для сортировки стэка а при использовании
+ * rotate и r_rotate соответственно
+ */
 static int	rotater(t_stack *lst, int befor, int after)
 {
 	int		ret;
@@ -42,7 +44,9 @@ static int	r_rotater(t_stack *lst, int befor, int after)
 
 /*mem is allocated in this function: be careful!*/
 
-/*пара функций, которые должны посчитать кол-во ходов для сортировки стэка а*/
+/*
+ * пара функций, которые должны посчитать кол-во ходов для сортировки стэка а
+ */
 
 int	*moves_to_a_2(t_stack *lsta, int index)
 {
@@ -94,6 +98,22 @@ int	*moves_to_a(t_stack *lsta)
 		rotate(&temp, 1, 0);
 	while (temp2->index != min && moves[1]++ > -1)
 		r_rotate(&temp2, 0, 0);
+	ft_lstclr(&temp);
+	ft_lstclr(&temp2);
+	return (moves);
+}
+
+int	*moves_to_b(t_stack *lstb, int index, int *moves)
+{
+	t_stack	*temp;
+	t_stack	*temp2;
+
+	temp = ft_lstcpy(lstb);
+	temp2 = ft_lstcpy(lstb);
+	while (temp->index != index && moves[2]++ > -1)
+		rotate(&temp, 1, 0);
+	while (temp2->index != index && moves[3]++ > -1)
+		r_rotate(&temp2, 1, 0);
 	ft_lstclr(&temp);
 	ft_lstclr(&temp2);
 	return (moves);
