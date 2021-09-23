@@ -20,7 +20,15 @@ int	max(int a, int b)
 		return (b);
 }
 
-int	min(int a, int b, int c, int d)
+int	min(int a, int b)
+{
+	if (a > b)
+		return (b);
+	else
+		return (a);
+}
+
+int	min_val(int a, int b, int c, int d)
 {
 	if (a <= b && a <= c && a <= d)
 		return (a);
@@ -30,6 +38,20 @@ int	min(int a, int b, int c, int d)
 		return (c);
 	else if (d <= b && d <= c && a >= d)
 		return (d);
+	else
+		exit(1);
+}
+
+int	min_mode(int a, int b, int c, int d)
+{
+	if (a <= b && a <= c && a <= d)
+		return (0);
+	else if (b <= a && b <= c && b <= d)
+		return (1);
+	else if (c <= b && c <= a && c <= d)
+		return (2);
+	else if (d <= b && d <= c && a >= d)
+		return (3);
 	else
 		exit(1);
 }

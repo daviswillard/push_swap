@@ -21,30 +21,35 @@
  * arr[2] - rrr + rra/rrb;
  * arr[3] - rra + ra;
  */
-static int	decide_action(t_stack *lsta, t_stack *lstb, int *mv)
+static int	*decide_action(t_stack *lsta, t_stack *lstb, int *mv)
 {
 	int		arr[4];
+	int		*values;
 
 	arr[0] = max(mv[0], mv[2]);
 	arr[1] = mv[0] + mv[3];
 	arr[2] = max(mv[1], mv[3]);
 	arr[3] = mv[1] + mv[2];
+	values = ft_calloc(4, sizeof(int));
+	*values = min_val(arr[0], arr[1], arr[2], arr[3]);
+	*(values + 1) = min_mode(arr[0], arr[1], arr[2], arr[3]);
+	*(values + 2) = ;
+	*(values + 3) = ;
 	free(mv);
-	return (min(arr[0], arr[1], arr[2], arr[3]));
+	return (values);
 }
 
-static int	marker(t_stack **lsta, t_stack **lstb, int mark, int index)
+static int	*marker(t_stack **lsta, t_stack **lstb, int mark, int index)
 {
-	int		t_index;
+	int		*t_index;
 	int		*mv;
 	t_stack	*temp;
 
-	t_index = index;
 	temp = *lstb;
-	while (t_index)
+	while (index)
 	{
 		temp = temp->next;
-		t_index--;
+		index--;
 	}
 	if (mark)
 		mv = moves_to_a(*lsta);
@@ -55,7 +60,7 @@ static int	marker(t_stack **lsta, t_stack **lstb, int mark, int index)
 	return (t_index);
 }
 
-static int	get_act(t_stack **lsta, t_stack **lstb, int *arr, t_int *ind)
+static int	get_act(t_stack **lsta, t_stack **lstb, int **arr, t_int *ind)
 {
 	int		acts;
 	int		index;
@@ -74,20 +79,15 @@ static int	get_act(t_stack **lsta, t_stack **lstb, int *arr, t_int *ind)
 		index++;
 		temp = temp->next;
 	}
-	while (index > -1)
-	{
-		printf("index = %d\nvalue = %d\n\n", index, arr[index]);
-		index--;
-	}
 	return (acts);
 }
 
 int	ind_deal(t_stack **lsta, t_stack **lstb, t_int *ind)
 {
 	int		acts;
-	int		*arr;
+	int		**arr;
 
-	arr = ft_calloc(lst_len(*lstb), sizeof(int));
+	arr = ft_calloc(lst_len(*lstb), sizeof(int *) + 1);
 	acts = 0;
 //	while (*lstb)
 		acts += get_act(lsta, lstb, arr, ind);

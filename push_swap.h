@@ -31,7 +31,11 @@ typedef struct s_lowhi
 
 int		max(int a, int b);
 
-int		min(int a, int b, int c, int d);
+int		min(int a, int b);
+
+int		min_val(int a, int b, int c, int d);
+
+int		min_mode(int a, int b, int c, int d);
 
 void	swap(t_stack **lst, int out, int loud);
 
