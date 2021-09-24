@@ -19,22 +19,59 @@
  * arr[0] - rr + ra/rb;
  * arr[1] - ra + rrb;
  * arr[2] - rrr + rra/rrb;
- * arr[3] - rra + ra;
+ * arr[3] - rra + rb;
+ * modes:
+ * 0:	rr & ra
+ * 1:	rr & rb
+ * 2:	ra & rrb
+ * 3:	rrr & rra
+ * 4:	rrr & rrb
+ * 5:	rb & rra
  */
-static int	*decide_action(t_stack *lsta, t_stack *lstb, int *mv)
+static int	ind_modes(int *mv, int min_mode, int value)
+{
+	if (!value)
+	{
+		if (!min_mode || min_mode == 1)
+			return (minmax(mv[0], mv[2], 0));
+		else if (min_mode == 2)
+			return (mv[0]);
+		else if (min_mode == 3 || min_mode == 4)
+			return (minmax(mv[1], mv[3], 0));
+		else
+			return (mv[1]);
+	}
+	else
+	{
+		if (!min_mode || min_mode == 1)
+			return (minmax(mv[0], mv[2], 1) - minmax(mv[0], mv[2], 0));
+		else if (min_mode == 2)
+			return (mv[3]);
+		else if (min_mode == 3 || min_mode == 4)
+			return (minmax(mv[1], mv[3], 1) - minmax(mv[1], mv[3], 0));
+		else
+			return (mv[2]);
+	}
+}
+
+static int	*decide_action(int *mv)
 {
 	int		arr[4];
 	int		*values;
 
-	arr[0] = max(mv[0], mv[2]);
+	arr[0] = minmax(mv[0], mv[2], 1);
 	arr[1] = mv[0] + mv[3];
-	arr[2] = max(mv[1], mv[3]);
+	arr[2] = minmax(mv[1], mv[3], 1);
 	arr[3] = mv[1] + mv[2];
 	values = ft_calloc(4, sizeof(int));
 	*values = min_val(arr[0], arr[1], arr[2], arr[3]);
+	if (!*values && mv[2] > mv[0])
+		*values = 1;
+	if (*values == 3 && mv[3] > mv[1])
+		*values = 4;
 	*(values + 1) = min_mode(arr[0], arr[1], arr[2], arr[3]);
-	*(values + 2) = ;
-	*(values + 3) = ;
+	*(values + 2) = ind_modes(mv, *(values + 1), 0);
+	*(values + 3) = ind_modes(mv, *(values + 1), 1);
 	free(mv);
 	return (values);
 }
@@ -56,16 +93,17 @@ static int	*marker(t_stack **lsta, t_stack **lstb, int mark, int index)
 	else
 		mv = moves_to_a_2(*lsta, temp->index);
 	mv = moves_to_b(*lstb, temp->index, mv);
-	t_index = decide_action(*lsta, *lstb, mv);
+	t_index = decide_action(mv);
 	return (t_index);
 }
 
-static int	get_act(t_stack **lsta, t_stack **lstb, int **arr, t_int *ind)
+int	get_act(t_stack **lsta, t_stack **lstb, int **arr, t_int *ind)
 {
 	int		acts;
 	int		index;
 	t_lowhi	edg;
 	t_stack	*temp;
+	static int	counter = 0;
 
 	temp = *lstb;
 	edg = hilow(lsta);
@@ -79,18 +117,9 @@ static int	get_act(t_stack **lsta, t_stack **lstb, int **arr, t_int *ind)
 		index++;
 		temp = temp->next;
 	}
-	return (acts);
-}
-
-int	ind_deal(t_stack **lsta, t_stack **lstb, t_int *ind)
-{
-	int		acts;
-	int		**arr;
-
-	arr = ft_calloc(lst_len(*lstb), sizeof(int *) + 1);
-	acts = 0;
-//	while (*lstb)
-		acts += get_act(lsta, lstb, arr, ind);
-	free(arr);
+	index = elem_index(arr, lst_len(*lstb));
+	acts = arr[index][0];
+	do_the_action(lsta, lstb, arr[index], ind);
+	push(lstb, lsta, 0, ind->loud);
 	return (acts);
 }

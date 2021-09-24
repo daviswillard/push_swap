@@ -56,15 +56,16 @@ int	*moves_to_a_2(t_stack *lsta, int index)
 	t_stack	*temp;
 	t_stack	*temp2;
 
+	temp = lsta;
 	befor = -1;
 	after = 0x7fffffff;
-	while (lsta)
+	while (temp)
 	{
-		if (lsta->index < index && befor < lsta->index)
+		if (temp->index < index && befor < temp->index)
 			befor = lsta->index;
-		if (lsta->index > index && after > lsta->index)
-			after = lsta->index;
-		lsta = lsta->next;
+		if (temp->index > index && after > temp->index && after == 0x7fffffff)
+			after = temp->index;
+		temp = temp->next;
 	}
 	temp = ft_lstcpy(lsta);
 	temp2 = ft_lstcpy(lsta);

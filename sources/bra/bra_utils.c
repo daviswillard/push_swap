@@ -12,20 +12,40 @@
 
 #include "../../push_swap.h"
 
-int	max(int a, int b)
+int	elem_index(int **array, int len)
 {
-	if (a > b)
-		return (a);
-	else
-		return (b);
+	int	value;
+	int	index;
+	int	ret;
+
+	value = 0x7fffffff;
+	ret = -1;
+	index = 0;
+	while (index < len)
+	{
+		if (value > array[index][0])
+			ret = index;
+		index++;
+	}
+	return (ret);
 }
 
-int	min(int a, int b)
+int	minmax(int a, int b, int mnm)
 {
-	if (a > b)
-		return (b);
+	if (!mnm)
+	{
+		if (a > b)
+			return (b);
+		else
+			return (a);
+	}
 	else
-		return (a);
+	{
+		if (a > b)
+			return (a);
+		else
+			return (b);
+	}
 }
 
 int	min_val(int a, int b, int c, int d)
@@ -44,14 +64,14 @@ int	min_val(int a, int b, int c, int d)
 
 int	min_mode(int a, int b, int c, int d)
 {
-	if (a <= b && a <= c && a <= d)
+	if (a <= b && a <= d && a <= c)
 		return (0);
 	else if (b <= a && b <= c && b <= d)
-		return (1);
-	else if (c <= b && c <= a && c <= d)
 		return (2);
-	else if (d <= b && d <= c && a >= d)
+	else if (c <= a && c <= b && c <= d)
 		return (3);
+	else if (d <= b && d <= c && a >= d)
+		return (5);
 	else
 		exit(1);
 }

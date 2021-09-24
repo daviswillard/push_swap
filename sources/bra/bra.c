@@ -12,16 +12,16 @@
 
 #include "../../push_swap.h"
 
-static int	decide(int pos0, int pos1)
-{
-	int	decision;
-
-	if (pos0 > pos1)
-		decision = 0;
-	else
-		decision = 1;
-	return (decision);
-}
+//static int	decide(int pos0, int pos1)
+//{
+//	int	decision;
+//
+//	if (pos0 > pos1)
+//		decision = 0;
+//	else
+//		decision = 1;
+//	return (decision);
+//}
 
 static t_int	*heap_init(void)
 {

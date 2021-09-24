@@ -71,6 +71,19 @@ static int	moves(t_stack *index, t_stack **lsta, t_stack **lstb, t_int *ind)
 	return (acts);
 }
 
+static int	ind_deal(t_stack **lsta, t_stack **lstb, t_int *ind)
+{
+	int		acts;
+	int		**arr;
+
+	arr = ft_calloc(lst_len(*lstb), sizeof(int *) + 1);
+	acts = 0;
+	while (*lstb)
+		acts += get_act(lsta, lstb, arr, ind);
+	free(arr);
+	return (acts);
+}
+
 int	act_ind(t_stack *lsta, t_stack *lstb, int index, t_int *ind)
 {
 	int		acts;

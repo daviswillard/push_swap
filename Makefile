@@ -6,7 +6,9 @@ SRCS = 	sources/main.c	sources/args.c \
 		sources/push_utils.c sources/algos.c \
 		sources/greed/greed.c sources/greed/stkb.c \
 		sources/greed/sort_a.c sources/bra/bra.c \
-		sources/bra/indexw.c
+		sources/bra/indexw.c sources/bra/bra_utils.c \
+		sources/bra/get_acts.c sources/bra/get_pos_grt.c \
+		sources/bra/get_pos_ind.c sources/bra/moves_to_a.c
 OBJS = ${SRCS:.c=.o}
 DEP = $(SRCS:.c=.d)
 all: $(LIBFT) $(NAME)

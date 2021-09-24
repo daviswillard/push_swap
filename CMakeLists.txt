@@ -28,7 +28,7 @@ add_executable  (
         sources/bra/get_pos_ind.c
         sources/bra/get_pos_grt.c
         sources/bra/indexw.c
-        sources/bra/ind_deal.c
+        sources/bra/get_acts.c
         sources/bra/bra_utils.c
         libft/ft_bzero.c
-        sources/bra/moves_to_a.c)
+        sources/bra/moves_to_a.c "sources/bra/do_the_action.c")
