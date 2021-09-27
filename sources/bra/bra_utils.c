@@ -24,7 +24,10 @@ int	elem_index(int **array, int len)
 	while (index < len)
 	{
 		if (value > array[index][0])
+		{
+			value = array[index][0];
 			ret = index;
+		}
 		index++;
 	}
 	return (ret);
@@ -86,7 +89,7 @@ t_lowhi	hilow(t_stack **lsta)
 	tmp = *lsta;
 	min = tmp->index;
 	max = tmp->index;
-	while (tmp->next)
+	while (tmp)
 	{
 		if (min > tmp->index)
 			min = tmp->index;

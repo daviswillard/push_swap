@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../../push_swap.h"
 
 void	do_the_action(t_stack **lsta, t_stack **lstb, int *info, t_int *ind)
@@ -24,9 +23,9 @@ void	do_the_action(t_stack **lsta, t_stack **lstb, int *info, t_int *ind)
 		}
 		while (info[3]-- > 0)
 		{
-			if (info[1] == 1)
+			if (!info[1])
 				rotate(lsta, 0, ind->loud);
-			else if (!info[1])
+			else
 				rotate(lstb, 1, ind->loud);
 		}
 	}
@@ -46,9 +45,9 @@ void	do_the_action(t_stack **lsta, t_stack **lstb, int *info, t_int *ind)
 		}
 		while (info[3]-- > 0)
 		{
-			if (info[1] == 1)
+			if (info[1] == 3)
 				r_rotate(lsta, 0, ind->loud);
-			else if (!info[1])
+			else
 				r_rotate(lstb, 1, ind->loud);
 		}
 	}

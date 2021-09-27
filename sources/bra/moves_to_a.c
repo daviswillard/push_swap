@@ -16,12 +16,22 @@
  * пара функций, считающих шаги для сортировки стэка а при использовании
  * rotate и r_rotate соответственно
  */
-static int	rotater(t_stack *lst, int befor, int after)
+static int	rotater(t_stack *lst, int before)
 {
 	int		ret;
+	int		after;
+	t_stack	*temp;
 
+	temp = lst;
+	while (temp->index != before)
+		temp = temp->next;
+	if (!temp->next)
+		temp = lst;
+	else
+		temp = temp->next;
+	after = temp->index;
 	ret = 0;
-	while (lst->index < befor || lst->index > after)
+	while (lst->index != after)
 	{
 		ret++;
 		rotate(&lst, 0, 0);
@@ -29,12 +39,22 @@ static int	rotater(t_stack *lst, int befor, int after)
 	return (ret);
 }
 
-static int	r_rotater(t_stack *lst, int befor, int after)
+static int	r_rotater(t_stack *lst, int before)
 {
 	int		ret;
+	int		after;
+	t_stack	*temp;
 
+	temp = lst;
+	while (temp->index != before)
+		temp = temp->next;
+	if (!temp->next)
+		temp = lst;
+	else
+		temp = temp->next;
+	after = temp->index;
 	ret = 0;
-	while (lst->index < befor || lst->index > after)
+	while (lst->index != after)
 	{
 		ret++;
 		r_rotate(&lst, 0, 0);
@@ -51,27 +71,23 @@ static int	r_rotater(t_stack *lst, int befor, int after)
 int	*moves_to_a_2(t_stack *lsta, int index)
 {
 	int		*moves;
-	int		befor;
-	int		after;
+	int		before;
 	t_stack	*temp;
 	t_stack	*temp2;
 
 	temp = lsta;
-	befor = -1;
-	after = 0x7fffffff;
+	before = -1;
 	while (temp)
 	{
-		if (temp->index < index && befor < temp->index)
-			befor = lsta->index;
-		if (temp->index > index && after > temp->index && after == 0x7fffffff)
-			after = temp->index;
+		if (temp->index < index && before < temp->index)
+			before = temp->index;
 		temp = temp->next;
 	}
 	temp = ft_lstcpy(lsta);
 	temp2 = ft_lstcpy(lsta);
 	moves = ft_calloc(4, 4);
-	moves[0] = rotater(temp, befor, after);
-	moves[1] = r_rotater(temp2, befor, after);
+	moves[0] = rotater(temp, before);
+	moves[1] = r_rotater(temp2, before);
 	ft_lstclr(&temp);
 	ft_lstclr(&temp2);
 	return (moves);
@@ -103,6 +119,10 @@ int	*moves_to_a(t_stack *lsta)
 	ft_lstclr(&temp2);
 	return (moves);
 }
+/*
+ * здесь mv[0] и mv[1] это количество ra и rra соответственно
+ * mv[2] и mv[3] rb и rrb соответственно
+ */
 
 int	*moves_to_b(t_stack *lstb, int index, int *moves)
 {

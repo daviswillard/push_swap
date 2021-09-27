@@ -76,17 +76,21 @@ static int	ind_deal(t_stack **lsta, t_stack **lstb, t_int *ind)
 	int		acts;
 	int		**arr;
 
-	arr = ft_calloc(lst_len(*lstb), sizeof(int *) + 1);
 	acts = 0;
 	while (*lstb)
+	{
+		arr = ft_calloc(lst_len(*lstb), sizeof(int *) + 1);
 		acts += get_act(lsta, lstb, arr, ind);
-	free(arr);
+		free(arr);
+	}
 	return (acts);
 }
 
 int	act_ind(t_stack *lsta, t_stack *lstb, int index, t_int *ind)
 {
 	int		acts;
+	int		*array;
+	int		action;
 	t_stack	*tmp;
 
 	tmp = lsta;
@@ -94,5 +98,29 @@ int	act_ind(t_stack *lsta, t_stack *lstb, int index, t_int *ind)
 		tmp = tmp->next;
 	acts = moves(tmp, &lsta, &lstb, ind);
 	acts += ind_deal(&lsta, &lstb, ind);
+	array = moves_to_a(lsta);
+	action = minmax(array[0], array[1], 0);
+	acts += action;
+	if (action == array[0])
+		while (action--)
+			rotate(&lsta, 0, ind->loud);
+	else
+		while (action--)
+			r_rotate(&lsta, 0, ind->loud);
+	free(array);
+	t_stack	*temp1;
+	temp1 = lsta;
+	while (temp1)
+	{
+		printf("index stack a = %d\n", temp1->index);
+		temp1 = temp1->next;
+	}
+	t_stack	*temp2;
+	temp2 = lstb;
+	while (temp2)
+	{
+		printf("index stack b = %d\n", temp2->index);
+		temp2 = temp2->next;
+	}
 	return (acts);
 }

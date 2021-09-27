@@ -20,13 +20,6 @@
  * arr[1] - ra + rrb;
  * arr[2] - rrr + rra/rrb;
  * arr[3] - rra + rb;
- * modes:
- * 0:	rr & ra
- * 1:	rr & rb
- * 2:	ra & rrb
- * 3:	rrr & rra
- * 4:	rrr & rrb
- * 5:	rb & rra
  */
 static int	ind_modes(int *mv, int min_mode, int value)
 {
@@ -53,6 +46,10 @@ static int	ind_modes(int *mv, int min_mode, int value)
 			return (mv[2]);
 	}
 }
+/*
+ * minmax - функция, которая считает либо максимальное, либо минимальное
+ * значение из двух, в зависимости от того, что мы передаем третьим аргументом
+ */
 
 static int	*decide_action(int *mv)
 {
@@ -64,17 +61,29 @@ static int	*decide_action(int *mv)
 	arr[2] = minmax(mv[1], mv[3], 1);
 	arr[3] = mv[1] + mv[2];
 	values = ft_calloc(4, sizeof(int));
-	*values = min_val(arr[0], arr[1], arr[2], arr[3]);
-	if (!*values && mv[2] > mv[0])
-		*values = 1;
-	if (*values == 3 && mv[3] > mv[1])
-		*values = 4;
-	*(values + 1) = min_mode(arr[0], arr[1], arr[2], arr[3]);
-	*(values + 2) = ind_modes(mv, *(values + 1), 0);
-	*(values + 3) = ind_modes(mv, *(values + 1), 1);
+	values[0] = min_val(arr[0], arr[1], arr[2], arr[3]);
+	values[1] = min_mode(arr[0], arr[1], arr[2], arr[3]);
+	if (!values[1] && mv[2] > mv[0])
+		values[1] = 1;
+	else if (values[1] == 3 && mv[3] > mv[1])
+		values[1] = 4;
+	values[2] = ind_modes(mv, values[1], 0);
+	values[3] = ind_modes(mv, values[1], 1);
 	free(mv);
 	return (values);
 }
+/*
+ * values[0] количество действий для получения необходимого лайнапа
+ * values[1] действия, которые будут выполняться для сортировки
+ * values[2 - 3] количество необходимых действий
+ * modes:
+ * 0:	rr & ra
+ * 1:	rr & rb
+ * 2:	ra & rrb
+ * 3:	rrr & rra
+ * 4:	rrr & rrb
+ * 5:	rb & rra
+ */
 
 static int	*marker(t_stack **lsta, t_stack **lstb, int mark, int index)
 {
@@ -103,7 +112,6 @@ int	get_act(t_stack **lsta, t_stack **lstb, int **arr, t_int *ind)
 	int		index;
 	t_lowhi	edg;
 	t_stack	*temp;
-	static int	counter = 0;
 
 	temp = *lstb;
 	edg = hilow(lsta);
