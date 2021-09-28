@@ -36,7 +36,11 @@ void	*algs(int argc, t_stack **lsta, t_stack **lstb)
 		ft_putendl_fd("", 1);
 		exit(0);
 	}
-//	greed(argc, lsta, lstb);
-	bra(*lsta, *lstb);
+	if (lst_len(*lsta) <= 5 && lst_len(*lsta) >= 3)
+		sorta(lsta, lstb, argc);
+	else if (lst_len(*lsta) == 2)
+		swap(lsta, 0, 1);
+	else
+		bra(*lsta, *lstb);
 	return (NULL);
 }

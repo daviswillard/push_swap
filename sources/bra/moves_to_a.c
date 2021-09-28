@@ -16,9 +16,8 @@
  * пара функций, считающих шаги для сортировки стэка а при использовании
  * rotate и r_rotate соответственно
  */
-static int	rotater(t_stack *lst, int before)
+static void	rotater(t_stack *lst, int before, int *mv)
 {
-	int		ret;
 	int		after;
 	t_stack	*temp;
 
@@ -30,18 +29,15 @@ static int	rotater(t_stack *lst, int before)
 	else
 		temp = temp->next;
 	after = temp->index;
-	ret = 0;
 	while (lst->index != after)
 	{
-		ret++;
+		(*mv)++;
 		rotate(&lst, 0, 0);
 	}
-	return (ret);
 }
 
-static int	r_rotater(t_stack *lst, int before)
+static void	r_rotater(t_stack *lst, int before, int *mv)
 {
-	int		ret;
 	int		after;
 	t_stack	*temp;
 
@@ -53,13 +49,11 @@ static int	r_rotater(t_stack *lst, int before)
 	else
 		temp = temp->next;
 	after = temp->index;
-	ret = 0;
 	while (lst->index != after)
 	{
-		ret++;
+		(*mv)++;
 		r_rotate(&lst, 0, 0);
 	}
-	return (ret);
 }
 
 /*mem is allocated in this function: be careful!*/
@@ -85,9 +79,9 @@ int	*moves_to_a_2(t_stack *lsta, int index)
 	}
 	temp = ft_lstcpy(lsta);
 	temp2 = ft_lstcpy(lsta);
-	moves = ft_calloc(4, 4);
-	moves[0] = rotater(temp, before);
-	moves[1] = r_rotater(temp2, before);
+	moves = ft_calloc(4,  sizeof(int));
+	rotater(temp, before, &moves[0]);
+	r_rotater(temp2, before, &moves[1]);
 	ft_lstclr(&temp);
 	ft_lstclr(&temp2);
 	return (moves);

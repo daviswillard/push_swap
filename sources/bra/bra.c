@@ -12,17 +12,6 @@
 
 #include "../../push_swap.h"
 
-//static int	decide(int pos0, int pos1)
-//{
-//	int	decision;
-//
-//	if (pos0 > pos1)
-//		decision = 0;
-//	else
-//		decision = 1;
-//	return (decision);
-//}
-
 static t_int	*heap_init(void)
 {
 	t_int	*ret;
@@ -30,7 +19,7 @@ static t_int	*heap_init(void)
 	ret = malloc(sizeof(t_int));
 	if (!ret)
 		return (NULL);
-	ret->loud = 0;
+	ret->loud = 1;
 	return (ret);
 }
 
@@ -48,6 +37,5 @@ int	bra(t_stack *lsta, t_stack *lstb)
 	pos[1] = get_pos_grt(&lsta, lst_len(lsta), &grt);
 	copy = ft_lstcpy(lsta);
 	cat[0] = act_ind(copy, lstb, pos[0], ind);
-	printf("%d\n", cat[0]);
 	return (0);
 }

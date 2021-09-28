@@ -108,19 +108,5 @@ int	act_ind(t_stack *lsta, t_stack *lstb, int index, t_int *ind)
 		while (action--)
 			r_rotate(&lsta, 0, ind->loud);
 	free(array);
-	t_stack	*temp1;
-	temp1 = lsta;
-	while (temp1)
-	{
-		printf("index stack a = %d\n", temp1->index);
-		temp1 = temp1->next;
-	}
-	t_stack	*temp2;
-	temp2 = lstb;
-	while (temp2)
-	{
-		printf("index stack b = %d\n", temp2->index);
-		temp2 = temp2->next;
-	}
 	return (acts);
 }
