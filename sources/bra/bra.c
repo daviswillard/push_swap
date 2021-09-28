@@ -37,5 +37,7 @@ int	bra(t_stack *lsta, t_stack *lstb)
 	pos[1] = get_pos_grt(&lsta, lst_len(lsta), &grt);
 	copy = ft_lstcpy(lsta);
 	cat[0] = act_ind(copy, lstb, pos[0], ind);
+	free(ind);
+	free(grt);
 	return (0);
 }

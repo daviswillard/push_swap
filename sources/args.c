@@ -72,5 +72,8 @@ t_stack	*get_args(int argc, char **argv)
 		ft_lstadd_back(&ret, ft_lstnew(arr[0][index], arr[1][index]));
 		index++;
 	}
+	free(arr[0]);
+	free(arr[1]);
+	free(arr);
 	return (ret);
 }

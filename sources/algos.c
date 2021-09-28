@@ -30,7 +30,6 @@ static int	check_all(t_stack *lst)
 
 void	*algs(int argc, t_stack **lsta, t_stack **lstb)
 {
-	(void)argc;
 	if (check_all(*lsta))
 	{
 		ft_putendl_fd("", 1);

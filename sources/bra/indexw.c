@@ -108,5 +108,7 @@ int	act_ind(t_stack *lsta, t_stack *lstb, int index, t_int *ind)
 		while (action--)
 			r_rotate(&lsta, 0, ind->loud);
 	free(array);
+	ft_lstclr(&lsta);
+	ft_lstclr(&lstb);
 	return (acts);
 }
