@@ -33,14 +33,22 @@ static int	check_len(int *acts, t_stack *index, t_stack **lsta, t_int *ind)
 	}
 }
 
-static void	markup(int index, int len, t_stack *lsta, t_stack *tmp)
+static void	markup(int index, t_int *ind, t_stack *lsta, t_stack *tmp)
 {
+	int	len;
+
+	len = lst_len(lsta);
 	while (len--)
 	{
-		if (tmp->index == index)
+		if (tmp->index == index && !ind->ig)
 		{
 			tmp->move = 0;
 			index++;
+		}
+		else if (tmp->index > index && ind->ig)
+		{
+			tmp->move = 0;
+			index = tmp->index;
 		}
 		else
 			(tmp->move) = 1;
@@ -57,11 +65,11 @@ static int	moves(t_stack *index, t_stack **lsta, t_stack **lstb, t_int *ind)
 
 	acts = 0;
 	len = lst_len(*lsta);
-	markup(index->index, len, *lsta, index);
+	markup(index->index, ind, *lsta, index);
 	while (len--)
 	{
 		if (check_len(&acts, index, lsta, ind))
-			markup(index->index, lst_len(*lsta), *lsta, index);
+			markup(index->index, ind, *lsta, index);
 		if ((*lsta)->move)
 			push(lsta, lstb, 1, ind->loud);
 		else
@@ -109,6 +117,5 @@ int	act_ind(t_stack *lsta, t_stack *lstb, int index, t_int *ind)
 			r_rotate(&lsta, 0, ind->loud);
 	free(array);
 	ft_lstclr(&lsta);
-	ft_lstclr(&lstb);
 	return (acts);
 }

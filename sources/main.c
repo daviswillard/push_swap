@@ -6,7 +6,7 @@
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 11:00:22 by dwillard          #+#    #+#             */
-/*   Updated: 2021/09/03 18:38:16 by dwillard         ###   ########.fr       */
+/*   Updated: 2021/09/30 13:00:17 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ int	main(int argc, char **argv)
 		return (-1);
 	}
 	stka = get_args(argc, argv);
-	algs(argc - 1, &stka, &stkb);
+	algs(&stka, &stkb);
 	return (0);
 }

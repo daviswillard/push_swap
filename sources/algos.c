@@ -28,7 +28,7 @@ static int	check_all(t_stack *lst)
 	return (1);
 }
 
-void	*algs(int argc, t_stack **lsta, t_stack **lstb)
+void	*algs(t_stack **lsta, t_stack **lstb)
 {
 	if (check_all(*lsta))
 	{
@@ -36,7 +36,7 @@ void	*algs(int argc, t_stack **lsta, t_stack **lstb)
 		exit(0);
 	}
 	if (lst_len(*lsta) <= 5 && lst_len(*lsta) >= 3)
-		sorta(lsta, lstb, argc);
+		sorta(lsta, lstb);
 	else if (lst_len(*lsta) == 2)
 		swap(lsta, 0, 1);
 	else

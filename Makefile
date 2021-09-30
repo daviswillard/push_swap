@@ -1,7 +1,7 @@
 NAME = push_swap
 LIBFT = libft.a
 LIB_DIR = ./libft/
-CFLAGS = -Wall -Wextra -Werror -MMD
+CFLAGS = -Wall -Wextra -Werror -MMD -O2
 SRCS = 	sources/main.c	sources/args.c \
 		sources/push_utils.c sources/algos.c \
 		sources/bra/sort_a.c sources/bra/bra.c \

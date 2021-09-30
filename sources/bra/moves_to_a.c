@@ -55,9 +55,6 @@ static void	r_rotater(t_stack **lst, int before, int *mv)
 		r_rotate(lst, 0, 0);
 	}
 }
-
-/*mem is allocated in this function: be careful!*/
-
 /*
  * пара функций, которые должны посчитать кол-во ходов для сортировки стэка а
  */
@@ -114,7 +111,7 @@ int	*moves_to_a(t_stack *lsta)
 	return (moves);
 }
 /*
- * здесь mv[0] и mv[1] это количество ra и rra соответственно
+ * здесь mv[0] и mv[1] это количество ra и rra, а
  * mv[2] и mv[3] rb и rrb соответственно
  */
 

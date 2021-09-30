@@ -21,6 +21,7 @@ typedef struct s_ind
 {
 	int	loud;
 	int	val;
+	int	ig;
 }	t_int;
 
 typedef struct s_lowhi
@@ -55,7 +56,7 @@ t_stack	*get_args(int argc, char **argv);
 
 int		greed(int argc, t_stack **lsta, t_stack **lstb);
 
-void	sorta(t_stack **lsta, t_stack **lstb, int argc);
+void	sorta(t_stack **lsta, t_stack **lstb);
 
 void	rdy_b(t_stack **lsta, t_stack **lstb);
 
@@ -63,7 +64,7 @@ void	gen_case(int first, int last, t_stack **lsta);
 
 void	sortb(t_stack **lst);
 
-void	*algs(int argc, t_stack **lsta, t_stack **lstb);
+void	*algs(t_stack **lsta, t_stack **lstb);
 
 int		bra(t_stack *lsta, t_stack *lstb);
 

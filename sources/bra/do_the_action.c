@@ -11,31 +11,13 @@
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
+/*
+ * функции выполняют действия над стэками а и б в зависимости от режима
+ * работы info[1] (см. файл get_acts.c)
+ */
 
-void	do_the_action(t_stack **lsta, t_stack **lstb, int *info, t_int *ind)
+static void	do_the_act_2(t_stack **lsta, t_stack **lstb, int *info, t_int *ind)
 {
-	if (!info[1] || info[1] == 1)
-	{
-		while (info[2]-- > 0)
-		{
-			rotate(lsta, 2, ind->loud);
-			rotate(lstb, 2, 0);
-		}
-		while (info[3]-- > 0)
-		{
-			if (!info[1])
-				rotate(lsta, 0, ind->loud);
-			else
-				rotate(lstb, 1, ind->loud);
-		}
-	}
-	if (info[1] == 2)
-	{
-		while (info[2]-- > 0)
-			rotate(lsta, 0, ind->loud);
-		while (info[3]-- > 0)
-			r_rotate(lstb, 1, ind->loud);
-	}
 	if (info[1] == 3 || info[1] == 4)
 	{
 		while (info[2]-- > 0)
@@ -58,4 +40,32 @@ void	do_the_action(t_stack **lsta, t_stack **lstb, int *info, t_int *ind)
 		while (info[3]-- > 0)
 			rotate(lstb, 1, ind->loud);
 	}
+}
+
+void	do_the_action(t_stack **lsta, t_stack **lstb, int *info, t_int *ind)
+{
+	if (!info[1] || info[1] == 1)
+	{
+		while (info[2]-- > 0)
+		{
+			rotate(lsta, 2, ind->loud);
+			rotate(lstb, 2, 0);
+		}
+		while (info[3]-- > 0)
+		{
+			if (!info[1])
+				rotate(lsta, 0, ind->loud);
+			else
+				rotate(lstb, 1, ind->loud);
+		}
+	}
+	else if (info[1] == 2)
+	{
+		while (info[2]-- > 0)
+			rotate(lsta, 0, ind->loud);
+		while (info[3]-- > 0)
+			r_rotate(lstb, 1, ind->loud);
+	}
+	else
+		do_the_act_2(lsta, lstb, info, ind);
 }

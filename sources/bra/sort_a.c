@@ -14,17 +14,15 @@
 
 static void	casef(t_stack **lsta, t_stack *tmp)
 {
-	if (tmp->index < tmp->next->index && tmp->index < (*lsta)->index)
-		swap(lsta, 0, 1);
-	else if (tmp->index > tmp->next->index && tmp->index > (*lsta)->index)
-		r_rotate(lsta, 0, 1);
-	else if (tmp->index < tmp->next->index && tmp->index < (*lsta)->index)
+	if (tmp->index < tmp->next->index && tmp->next->index < (*lsta)->index)
 		rotate(lsta, 0, 1);
-	else
+	else if (tmp->index > tmp->next->index)
 	{
 		swap(lsta, 0, 1);
 		r_rotate(lsta, 0, 1);
 	}
+	else if ((*lsta)->index < tmp->next->index)
+		swap(lsta, 0, 1);
 }
 
 static void	rdy_a(t_stack **lsta, t_stack **lstb, int counter)
@@ -81,28 +79,57 @@ static void	get_b_back(t_stack **lsta, t_stack **lstb)
 	}
 }
 
-void	sorta(t_stack **lsta, t_stack **lstb, int argc)
+static void	small_sort(t_stack **lsta)
+{
+	t_stack	*temp;
+	int		counter;
+	int		min;
+
+	min = 0;
+	counter = 0;
+	temp = *lsta;
+	while (temp)
+	{
+		if (temp->index < min)
+			min = temp->index;
+		temp = temp->next;
+	}
+	temp = (*lsta);
+	while (temp->index != min && counter++ < lst_len(*lsta))
+		temp = temp->next;
+	if (counter < lst_len(*lsta) / 2)
+		while ((*lsta)->index != min)
+			rotate(lsta, 0, 1);
+	else
+		while ((*lsta)->index != min)
+			r_rotate(lsta, 0, 1);
+}
+
+void	sorta(t_stack **lsta, t_stack **lstb)
 {
 	t_stack		*tmp;
+	t_stack		*temp;
 
 	if (lst_len(*lsta) > 3)
 		while (lst_len(*lsta) != 3)
 			push(lsta, lstb, 1, 1);
 	tmp = (*lsta)->next;
+	temp = tmp->next;
 	if (tmp->index < (*lsta)->index)
 		casef(lsta, tmp);
 	else
 	{
-		if (tmp->index < tmp->next->index)
+		if (tmp->index < temp->index)
 			;
-		else if (tmp->index > tmp->next->index)
+		else if (tmp->index > temp->index && (*lsta)->index > temp->index)
 			r_rotate(lsta, 0, 1);
 		else
 		{
-			rotate(lsta, 0, 1);
 			swap(lsta, 0, 1);
+			rotate(lsta, 0, 1);
 		}
 	}
-	while (lst_len(*lsta) < 5 && argc > 3)
+	while (*lstb)
 		get_b_back(lsta, lstb);
+	small_sort(lsta);
 }
