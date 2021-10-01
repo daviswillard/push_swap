@@ -21,7 +21,6 @@ typedef struct s_ind
 {
 	int	loud;
 	int	val;
-	int	ig;
 }	t_int;
 
 typedef struct s_lowhi
@@ -54,15 +53,7 @@ void	ft_lstclr(t_stack **list);
 
 t_stack	*get_args(int argc, char **argv);
 
-int		greed(int argc, t_stack **lsta, t_stack **lstb);
-
 void	sorta(t_stack **lsta, t_stack **lstb);
-
-void	rdy_b(t_stack **lsta, t_stack **lstb);
-
-void	gen_case(int first, int last, t_stack **lsta);
-
-void	sortb(t_stack **lst);
 
 void	*algs(t_stack **lsta, t_stack **lstb);
 
@@ -85,7 +76,5 @@ int		*moves_to_a(t_stack *lsta);
 int		*moves_to_b(t_stack *lstb, int index, int *moves);
 
 void	do_the_action(t_stack **lsta, t_stack **lstb, int *info, t_int *ind);
-
-int		get_pos_grt(t_stack **lsta, int len, t_int **ind);
 
 #endif

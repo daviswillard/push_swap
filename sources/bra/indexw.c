@@ -33,22 +33,17 @@ static int	check_len(int *acts, t_stack *index, t_stack **lsta, t_int *ind)
 	}
 }
 
-static void	markup(int index, t_int *ind, t_stack *lsta, t_stack *tmp)
+static void	markup(int index, t_stack *lsta, t_stack *tmp)
 {
 	int	len;
 
 	len = lst_len(lsta);
 	while (len--)
 	{
-		if (tmp->index == index && !ind->ig)
+		if (tmp->index == index)
 		{
 			tmp->move = 0;
 			index++;
-		}
-		else if (tmp->index > index && ind->ig)
-		{
-			tmp->move = 0;
-			index = tmp->index;
 		}
 		else
 			(tmp->move) = 1;
@@ -65,11 +60,11 @@ static int	moves(t_stack *index, t_stack **lsta, t_stack **lstb, t_int *ind)
 
 	acts = 0;
 	len = lst_len(*lsta);
-	markup(index->index, ind, *lsta, index);
+	markup(index->index, *lsta, index);
 	while (len--)
 	{
 		if (check_len(&acts, index, lsta, ind))
-			markup(index->index, ind, *lsta, index);
+			markup(index->index, *lsta, index);
 		if ((*lsta)->move)
 			push(lsta, lstb, 1, ind->loud);
 		else
@@ -83,9 +78,11 @@ static int	ind_deal(t_stack **lsta, t_stack **lstb, t_int *ind)
 {
 	int		acts;
 	int		**arr;
+	int		len;
 
+	len = lst_len(*lsta) + lst_len(*lstb);
 	acts = 0;
-	while (*lstb)
+	while (*lstb && lst_len(*lsta) != len)
 	{
 		arr = ft_calloc(lst_len(*lstb), sizeof(int *) + 1);
 		acts += get_act(lsta, lstb, arr, ind);

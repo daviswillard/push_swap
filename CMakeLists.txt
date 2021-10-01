@@ -24,7 +24,6 @@ add_executable  (
         sources/bra/sort_a.c
         sources/bra/bra.c
         sources/bra/get_pos_ind.c
-        sources/bra/get_pos_grt.c
         sources/bra/indexw.c
         sources/bra/get_acts.c
         sources/bra/bra_utils.c

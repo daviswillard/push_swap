@@ -60,7 +60,7 @@ void	rotate(t_stack **lst, int out, int loud)
 	t_stack	*temp2;
 
 	if (lst_len(*lst) == 2)
-		swap(lst, 2, loud);
+		swap(lst, 2, 0);
 	else
 	{
 		temp = *lst;

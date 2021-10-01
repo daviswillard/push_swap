@@ -19,46 +19,21 @@ static t_int	*heap_init(void)
 	ret = malloc(sizeof(t_int));
 	if (!ret)
 		return (NULL);
-	ret->loud = 0;
+	ret->loud = 1;
 	return (ret);
-}
-
-static int	decide(int a, int b, t_int *ind, t_int *grt)
-{
-	if (a > b)
-	{
-		ind->loud = 1;
-		return (0);
-	}
-	else
-		grt->loud = 1;
-	return (1);
 }
 
 int	bra(t_stack *lsta, t_stack *lstb)
 {
 	t_int	*ind;
-	t_int	*grt;
-	int		pos[2];
-	int		cat[2];
+	int		pos;
+	int		cat;
 	t_stack	*copy;
 
 	ind = heap_init();
-	grt = heap_init();
-	ind->ig = 0;
-	grt->ig = 1;
-	pos[0] = get_pos_ind(&lsta, lst_len(lsta), &ind);
-	pos[1] = get_pos_grt(&lsta, lst_len(lsta), &grt);
+	pos = get_pos_ind(&lsta, lst_len(lsta), &ind);
 	copy = ft_lstcpy(lsta);
-	cat[0] = act_ind(copy, lstb, pos[0], ind);
-	copy = ft_lstcpy(lsta);
-	cat[1] = act_ind(copy, lstb, pos[1], grt);
-	copy = ft_lstcpy(lsta);
-	if (!decide(cat[0], cat[1], ind, grt))
-		act_ind(copy, lstb, pos[0], ind);
-	else
-		act_ind(copy, lstb, pos[1], grt);
+	cat = act_ind(copy, lstb, pos, ind);
 	free(ind);
-	free(grt);
-	return (0);
+	return (cat);
 }
