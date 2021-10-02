@@ -44,14 +44,14 @@ static int	**args(char **argv, int argc)
 			return (NULL);
 		counter++;
 	}
-	ret = malloc(sizeof(ret));
+	ret = malloc(sizeof(int *) * counter * 2);
 	if (!ret)
 		exit(-1);
-	ret[0] = malloc(sizeof(int) * counter);
-	ret[1] = malloc(sizeof(int) * counter);
+	ret[0] = ft_calloc(counter, sizeof(int));
+	ret[1] = ft_calloc(counter, sizeof(int));
 	ret[2] = NULL;
 	if (!ret[0] || !ret[1])
-		return (NULL);
+		exit(1);
 	put_ind(&ret[0], &ret[1], argv, argc);
 	return (ret);
 }

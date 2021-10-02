@@ -1,5 +1,5 @@
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -MMD
+CC = clang
+CFLAGS = -Wall -Wextra -Werror -fPIC -O2 -MMD
 NAME = libft.a
 SRCS = ft_memset.c ft_bzero.c \
       ft_memcpy.c ft_memccpy.c \
@@ -21,13 +21,13 @@ SRCS = ft_memset.c ft_bzero.c \
       ft_split.c ft_unite.c \
 	  ft_lstnew.c ft_lstadd_front.c \
       ft_lstsize.c ft_lstlast.c \
-      ft_lstadd_back.c ft_lstdelone.c \
+      ft_lstadd_back.c \
       ft_lstclear.c ft_lstiter.c
 OBJS = ${SRCS:.c=.o}
 DEP = $(SRCS:.c=.d)
 all: $(NAME)
 .c.o:
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -I. -c $< -o $@
 $(NAME): $(OBJS)
 	ar -rcs $(NAME) $?
 clean:
