@@ -17,7 +17,7 @@ all: $(NAME)
 #	$(MAKE) all -sC $(LIB_DIR)
 $(NAME): $(OBJS)
 	$(MAKE) all -sC $(LIB_DIR)
-	gcc $(CFLAGS) -I. -L$(LIB_DIR) -l:libft.a $(OBJS) -o $(NAME)
+	gcc $(CFLAGS) -I. $(OBJS) -L$(LIB_DIR) -l:$(LIBFT) -o $(NAME)
 clean:
 	$(MAKE) clean -sC $(LIB_DIR)
 	rm -rf $(OBJS) $(DEP)

@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -fPIC -O2 -MMD
+CFLAGS = -Wall -Wextra -Werror -O2 -MMD
 NAME = libft.a
 SRCS = ft_memset.c ft_bzero.c \
       ft_memcpy.c ft_memccpy.c \

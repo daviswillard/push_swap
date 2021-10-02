@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
+
 /*
  * mv[0] - ra;
  * mv[1] - rra;
@@ -122,10 +123,13 @@ int	get_act(t_stack **lsta, t_stack **lstb, int **arr, t_int *ind)
 			arr[index] = marker(lsta, lstb, -1, index);
 		else
 			arr[index] = marker(lsta, lstb, 0, index);
+		if (arr[index][0] <= 2)
+			break ;
 		index++;
 		temp = temp->next;
 	}
-	index = elem_index(arr, lst_len(*lstb));
+	if (index == lst_len(*lstb))
+		index = elem_index(arr, lst_len(*lstb));
 	acts = arr[index][0];
 	do_the_action(lsta, lstb, arr[index], ind);
 	index = 0;
