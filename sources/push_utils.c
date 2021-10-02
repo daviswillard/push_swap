@@ -87,14 +87,19 @@ void	r_rotate(t_stack **lst, int out, int loud)
 	t_stack	*temp;
 	t_stack	*temp2;
 
-	temp2 = *lst;
-	while (temp2->next->next)
-		temp2 = temp2->next;
-	temp = temp2->next;
-	temp2->next = NULL;
-	temp2 = *lst;
-	*lst = temp;
-	(*lst)->next = temp2;
+	if (lst_len(*lst) == 2)
+		swap(lst, 2, 0);
+	else
+	{
+		temp2 = *lst;
+		while (temp2->next->next)
+			temp2 = temp2->next;
+		temp = temp2->next;
+		temp2->next = NULL;
+		temp2 = *lst;
+		*lst = temp;
+		(*lst)->next = temp2;
+	}
 	if (loud)
 	{
 		if (!out)
