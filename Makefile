@@ -10,7 +10,7 @@ SRCS = 	sources/main.c	sources/args.c \
 		sources/bra/get_pos_ind.c sources/bra/moves_to_a.c
 OBJS = ${SRCS:.c=.o}
 DEP = $(SRCS:.c=.d)
-all: $(LIBFT) $(NAME)
+all: $(NAME)
 .c.o:
 	gcc $(CFLAGS) -I. -c $< -o $@
 #$(LIBFT):
