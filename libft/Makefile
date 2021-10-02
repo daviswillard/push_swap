@@ -1,4 +1,4 @@
-CC = clang
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror -fPIC -O2 -MMD
 NAME = libft.a
 SRCS = ft_memset.c ft_bzero.c \
