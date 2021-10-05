@@ -17,7 +17,10 @@ static int	check_len(int *acts, t_stack *index, t_stack **lsta, t_int *ind)
 	int		val_sa;
 
 	swap(lsta, 0, 0);
-	val_sa = cycle_through(*lsta, index, index->index, lst_len(*lsta));
+	if (!ind->ig)
+		val_sa = cycle_through(*lsta, index, index->index, lst_len(*lsta));
+	else
+		val_sa = cycle_through(*lsta, index, index->index, lst_len(*lsta));
 	if (val_sa > ind->val)
 	{
 		(*acts)++;
@@ -33,17 +36,22 @@ static int	check_len(int *acts, t_stack *index, t_stack **lsta, t_int *ind)
 	}
 }
 
-static void	markup(int index, t_stack *lsta, t_stack *tmp)
+static void	markup(int index, t_int *ind, t_stack *lsta, t_stack *tmp)
 {
 	int	len;
 
 	len = lst_len(lsta);
 	while (len--)
 	{
-		if (tmp->index == index)
+		if (tmp->index == index && !ind->ig)
 		{
 			tmp->move = 0;
 			index++;
+		}
+		else if (tmp->index > index && ind->ig)
+		{
+			tmp->move = 0;
+			index = tmp->index;
 		}
 		else
 			(tmp->move) = 1;
@@ -60,11 +68,11 @@ static int	moves(t_stack *index, t_stack **lsta, t_stack **lstb, t_int *ind)
 
 	acts = 0;
 	len = lst_len(*lsta);
-	markup(index->index, *lsta, index);
+	markup(index->index, ind, *lsta, index);
 	while (len--)
 	{
 		if (check_len(&acts, index, lsta, ind))
-			markup(index->index, *lsta, index);
+			markup(index->index, ind, *lsta, index);
 		if ((*lsta)->move)
 			push(lsta, lstb, 1, ind->loud);
 		else
