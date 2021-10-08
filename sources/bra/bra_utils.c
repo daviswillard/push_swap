@@ -76,7 +76,10 @@ int	min_mode(int a, int b, int c, int d)
 	else if (d <= b && d <= c && a >= d)
 		return (5);
 	else
+	{
+		ft_putendl_fd("Error", 2);
 		exit(1);
+	}
 }
 
 t_lowhi	hilow(t_stack **lsta)

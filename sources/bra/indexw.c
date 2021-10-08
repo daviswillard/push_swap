@@ -20,7 +20,7 @@ static int	check_len(int *acts, t_stack *index, t_stack **lsta, t_int *ind)
 	if (!ind->ig)
 		val_sa = cycle_through(*lsta, index, index->index, lst_len(*lsta));
 	else
-		val_sa = cycle_through(*lsta, index, index->index, lst_len(*lsta));
+		val_sa = through_grt(*lsta, index, index->index, lst_len(*lsta));
 	if (val_sa > ind->val)
 	{
 		(*acts)++;

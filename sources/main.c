@@ -40,12 +40,12 @@ static void	check_digits(int count, char **ret)
 		{
 			if (!ft_isdigit(ret[index][ind]) && ret[index][ind] != '-')
 			{
-				ft_putendl_fd("Error", 1);
+				ft_putendl_fd("Error", 2);
 				exit(0);
 			}
 			if (ret[index][ind] == '-' && ind > 0 && ret[index][ind - 1] == '-')
 			{
-				ft_putendl_fd("Error", 1);
+				ft_putendl_fd("Error", 2);
 				exit(0);
 			}
 			ind++;
@@ -66,7 +66,7 @@ static char	**parse_str(int *count, char *argv)
 	free(argv);
 	if (*count == 1)
 	{
-		ft_putendl_fd("Error", 1);
+		ft_putendl_fd("Error", 2);
 		exit(0);
 	}
 	check_digits(*count, ret);
@@ -83,7 +83,7 @@ int	main(int argc, char **argv)
 	stkb = NULL;
 	if (argc < 2)
 	{
-		ft_putstr_fd("Error\n", 1);
+		ft_putstr_fd("Error\n", 2);
 		return (0);
 	}
 	count = argc;

@@ -68,7 +68,7 @@ t_stack	*get_args(int argc, char **argv)
 	arr = args(argv, argc);
 	if (arr == NULL)
 	{
-		ft_putendl_fd("Error", 1);
+		ft_putendl_fd("Error", 2);
 		exit(-1);
 	}
 	ret = ft_lstnew(arr[0][0], arr[1][0]);
