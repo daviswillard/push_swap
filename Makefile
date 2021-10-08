@@ -14,11 +14,9 @@ DEP = $(SRCS:.c=.d)
 all: $(NAME)
 .c.o:
 	gcc $(CFLAGS) -I. -c $< -o $@
-#$(LIBFT):
-#	$(MAKE) all -sC $(LIB_DIR)
 $(NAME): $(OBJS)
 	$(MAKE) all -sC $(LIB_DIR)
-	gcc $(CFLAGS) -I. $(OBJS) -L$(LIB_DIR) -lft -o $(NAME)
+	gcc $(CFLAGS) $(OBJS) -L$(LIB_DIR) -lft -o $(NAME)
 clean:
 	$(MAKE) clean -sC $(LIB_DIR)
 	rm -rf $(OBJS) $(DEP)

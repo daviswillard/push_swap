@@ -6,7 +6,7 @@
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 11:02:53 by dwillard          #+#    #+#             */
-/*   Updated: 2021/09/06 15:47:01 by dwillard         ###   ########.fr       */
+/*   Updated: 2021/10/08 14:16:30 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,10 @@ t_stack	*get_args(int argc, char **argv)
 	index = 1;
 	arr = args(argv, argc);
 	if (arr == NULL)
+	{
+		ft_putendl_fd("Error", 1);
 		exit(-1);
+	}
 	ret = ft_lstnew(arr[0][0], arr[1][0]);
 	while (index < argc - 1)
 	{

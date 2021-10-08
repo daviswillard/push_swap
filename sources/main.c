@@ -6,7 +6,7 @@
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 11:00:22 by dwillard          #+#    #+#             */
-/*   Updated: 2021/09/30 13:00:17 by dwillard         ###   ########.fr       */
+/*   Updated: 2021/10/08 14:42:06 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,40 @@ t_stack	*ft_lstcpy(t_stack *base)
 	return (copy);
 }
 
+static void	freed(char ***obj)
+{
+	int	index;
+
+	index = 0;
+	while ((*obj)[index])
+	{
+		free((*obj)[index]);
+		(*obj)[index] = NULL;
+		index++;
+	}
+	free(*obj);
+	*obj = NULL;
+}
+
+static char	**parse_str(int *count, char *argv)
+{
+	char	**ret;
+
+	*count = 0;
+	argv = ft_strjoin("push_swap ", argv);
+	ret = ft_split(argv, ' ');
+	while (ret[*count])
+		(*count)++;
+	free(argv);
+	return (ret);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*stka;
 	t_stack	*stkb;
+	char	**integers;
+	int		count;
 
 	stkb = NULL;
 	if (argc < 2)
@@ -63,7 +93,15 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Error\n", 1);
 		return (-1);
 	}
-	stka = get_args(argc, argv);
+	count = argc;
+	if (count == 2)
+	{
+		integers = parse_str(&count, argv[1]);
+		stka = get_args(count, integers);
+		freed(&integers);
+	}
+	else
+		stka = get_args(argc, argv);
 	algs(&stka, &stkb);
 	return (0);
 }
