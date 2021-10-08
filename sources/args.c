@@ -42,6 +42,8 @@ static int	**args(char **argv, int argc)
 	{
 		if (!ft_isdigit(*(argv[counter])) && *(argv[counter]) != '-')
 			return (NULL);
+		if (argv[counter][0] == '-' && !ft_isdigit(argv[counter][1]))
+			return (NULL);
 		counter++;
 	}
 	ret = malloc(sizeof(int *) * counter * 2);

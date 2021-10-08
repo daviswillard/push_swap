@@ -12,46 +12,6 @@
 
 #include "../push_swap.h"
 
-void	ft_lstclr(t_stack **list)
-{
-	t_stack	*temp;
-	t_stack	*temp2;
-
-	temp = *list;
-	while (temp)
-	{
-		temp->index = 0;
-		temp->integer = 0;
-		temp->move = 0;
-		temp2 = temp;
-		temp = temp->next;
-		free(temp2);
-	}
-	*list = NULL;
-}
-
-t_stack	*ft_lstcpy(t_stack *base)
-{
-	t_stack	*copy;
-	t_stack	*temp;
-	t_stack	*temp2;
-
-	temp = base->next;
-	copy = ft_lstnew(base->integer, base->index);
-	if (!copy)
-		exit(1);
-	temp2 = copy;
-	while (temp)
-	{
-		temp2->next = ft_lstnew(temp->integer, temp->index);
-		if (!temp2->next)
-			exit(1);
-		temp = temp->next;
-		temp2 = temp2->next;
-	}
-	return (copy);
-}
-
 static void	freed(char ***obj)
 {
 	int	index;
@@ -67,6 +27,33 @@ static void	freed(char ***obj)
 	*obj = NULL;
 }
 
+static void	check_digits(int count, char **ret)
+{
+	int		index;
+	int		ind;
+
+	index = 0;
+	ind = 0;
+	while (++index < count)
+	{
+		while (ret[index][ind] != '\0')
+		{
+			if (!ft_isdigit(ret[index][ind]) && ret[index][ind] != '-')
+			{
+				ft_putendl_fd("Error", 1);
+				exit(0);
+			}
+			if (ret[index][ind] == '-' && ind > 0 && ret[index][ind - 1] == '-')
+			{
+				ft_putendl_fd("Error", 1);
+				exit(0);
+			}
+			ind++;
+		}
+		ind = 0;
+	}
+}
+
 static char	**parse_str(int *count, char *argv)
 {
 	char	**ret;
@@ -77,6 +64,12 @@ static char	**parse_str(int *count, char *argv)
 	while (ret[*count])
 		(*count)++;
 	free(argv);
+	if (*count == 1)
+	{
+		ft_putendl_fd("Error", 1);
+		exit(0);
+	}
+	check_digits(*count, ret);
 	return (ret);
 }
 
@@ -91,7 +84,7 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 	{
 		ft_putstr_fd("Error\n", 1);
-		return (-1);
+		return (0);
 	}
 	count = argc;
 	if (count == 2)

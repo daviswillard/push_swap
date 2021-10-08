@@ -82,6 +82,4 @@ int		*moves_to_b(t_stack *lstb, int index, int *moves);
 
 void	do_the_action(t_stack **lsta, t_stack **lstb, int *info, t_int *ind);
 
-int		get_pos_grt(t_stack **lsta, int len, t_int **ind);
-
 #endif

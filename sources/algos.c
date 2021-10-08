@@ -12,6 +12,46 @@
 
 #include "../push_swap.h"
 
+void	ft_lstclr(t_stack **list)
+{
+	t_stack	*temp;
+	t_stack	*temp2;
+
+	temp = *list;
+	while (temp)
+	{
+		temp->index = 0;
+		temp->integer = 0;
+		temp->move = 0;
+		temp2 = temp;
+		temp = temp->next;
+		free(temp2);
+	}
+	*list = NULL;
+}
+
+t_stack	*ft_lstcpy(t_stack *base)
+{
+	t_stack	*copy;
+	t_stack	*temp;
+	t_stack	*temp2;
+
+	temp = base->next;
+	copy = ft_lstnew(base->integer, base->index);
+	if (!copy)
+		exit(0);
+	temp2 = copy;
+	while (temp)
+	{
+		temp2->next = ft_lstnew(temp->integer, temp->index);
+		if (!temp2->next)
+			exit(1);
+		temp = temp->next;
+		temp2 = temp2->next;
+	}
+	return (copy);
+}
+
 static int	check_all(t_stack *lst)
 {
 	int	index;

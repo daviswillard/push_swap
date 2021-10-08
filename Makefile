@@ -11,11 +11,12 @@ SRCS = 	sources/main.c	sources/args.c \
 		sources/bra/get_pos_grt.c
 OBJS = ${SRCS:.c=.o}
 DEP = $(SRCS:.c=.d)
-all: $(NAME)
+all: lib $(NAME)
+lib:
+	$(MAKE) all -sC $(LIB_DIR)
 .c.o:
 	gcc $(CFLAGS) -I. -c $< -o $@
 $(NAME): $(OBJS)
-	$(MAKE) all -sC $(LIB_DIR)
 	gcc $(CFLAGS) $(OBJS) -L$(LIB_DIR) -lft -o $(NAME)
 clean:
 	$(MAKE) clean -sC $(LIB_DIR)
@@ -24,5 +25,5 @@ fclean: clean
 	$(MAKE) fclean -sC $(LIB_DIR)
 	rm -rf $(NAME)
 re: fclean all
-.PHONY: all clean fclean re
+.PHONY: all lib bonus clean fclean re
 -include	$(OBJS:.o=.d)

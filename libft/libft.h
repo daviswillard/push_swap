@@ -9,6 +9,9 @@
 /*   Updated: 2021/04/24 17:50:21 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*This libft is for push_swap project only, as it has a couple of different
+ * functions
+ */
 
 #ifndef LIBFT_H
 

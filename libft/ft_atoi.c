@@ -29,6 +29,15 @@ static char	spacer(char input)
 	return (' ');
 }
 
+static void	check_push_swap(char check)
+{
+	if (check != '\0')
+	{
+		ft_putendl_fd("Error", 1);
+		exit (0);
+	}
+}
+
 int	ft_atoi(const char *str)
 {
 	int	ind;
@@ -52,6 +61,7 @@ int	ft_atoi(const char *str)
 		value += (str[ind] - 48);
 		ind++;
 	}
+	check_push_swap(str[ind]);
 	if (sgn == -1)
 		value = -value;
 	return (value);

@@ -107,6 +107,16 @@ static int	*marker(t_stack **lsta, t_stack **lstb, int mark, int index)
 	return (t_index);
 }
 
+static void	freed(t_stack **lsta, t_stack **lstb, int **arr, t_int *ind)
+{
+	int	index;
+
+	index = 0;
+	while (index < lst_len(*lstb))
+		free(arr[index++]);
+	push(lstb, lsta, 0, ind->loud);
+}
+
 int	get_act(t_stack **lsta, t_stack **lstb, int **arr, t_int *ind)
 {
 	int		acts;
@@ -132,9 +142,6 @@ int	get_act(t_stack **lsta, t_stack **lstb, int **arr, t_int *ind)
 		index = elem_index(arr, lst_len(*lstb));
 	acts = arr[index][0];
 	do_the_action(lsta, lstb, arr[index], ind);
-	index = 0;
-	while (index < lst_len(*lstb))
-		free(arr[index++]);
-	push(lstb, lsta, 0, ind->loud);
+	freed(lsta, lstb, arr, ind);
 	return (acts);
 }
