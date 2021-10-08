@@ -54,32 +54,6 @@ void	ft_lstclr(t_stack **list);
 
 t_stack	*get_args(int argc, char **argv);
 
-void	sorta(t_stack **lsta, t_stack **lstb);
-
 void	*algs(t_stack **lsta, t_stack **lstb);
-
-int		bra(t_stack *lsta, t_stack *lstb);
-
-int		get_pos_ind(t_stack **lsta, int len, t_int **ind);
-
-int		get_pos_grt(t_stack **lsta, int len, t_int **ind);
-
-int		cycle_through(t_stack *hold, t_stack *temp, int index, int len);
-
-int		through_grt(t_stack *hold, t_stack *temp, int integer, int len);
-
-int		act_ind(t_stack *lsta, t_stack *lstb, int index, t_int *ind);
-
-int		get_act(t_stack **lsta, t_stack **lstb, int **arr, t_int *ind);
-
-t_lowhi	hilow(t_stack **lsta);
-
-int		*moves_to_a_2(t_stack *lsta, int index);
-
-int		*moves_to_a(t_stack *lsta);
-
-int		*moves_to_b(t_stack *lstb, int index, int *moves);
-
-void	do_the_action(t_stack **lsta, t_stack **lstb, int *info, t_int *ind);
 
 #endif

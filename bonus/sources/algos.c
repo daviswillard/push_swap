@@ -109,14 +109,12 @@ void	*algs(t_stack **lsta, t_stack **lstb)
 {
 	if (check_all(*lsta))
 	{
-		ft_putstr_fd("", 1);
+		ft_putendl_fd("OK", 1);
 		exit(0);
 	}
-	if (lst_len(*lsta) <= 5 && lst_len(*lsta) >= 3)
-		sorta(lsta, lstb);
-	else if (lst_len(*lsta) == 2)
-		swap(lsta, 0, 1);
 	else
-		bra(*lsta, *lstb);
-	return (NULL);
+	{
+		ft_putendl_fd("KO", 1);
+		exit(0);
+	}
 }
