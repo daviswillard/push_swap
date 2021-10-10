@@ -38,9 +38,9 @@ t_stack	*ft_lstnew(int integer, int index);
 
 t_list	*ft_lstlast(t_list *lst);
 
-void	ft_lstadd_front(t_stack **lst, t_stack *new);
+void	ft_lstadd_front(t_stack **lst, t_stack *news);
 
-void	ft_lstadd_back(t_stack **lst, t_stack *new);
+void	ft_lstadd_back(t_stack **lst, t_stack *news);
 
 int		ft_lstsize(t_list *lst);
 

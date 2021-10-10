@@ -15,7 +15,6 @@
 
 # include <fcntl.h>
 # include "libft/libft.h"
-# include <stdio.h>
 
 typedef struct s_ind
 {
@@ -48,7 +47,7 @@ void	r_rotate(t_stack **lst, int out, int loud);
 
 int		lst_len(t_stack *lst);
 
-t_stack	*ft_lstcpy(t_stack *base); //mem alloc: check for leaks!
+t_stack	*ft_lstcpy(t_stack *base);
 
 void	ft_lstclr(t_stack **list);
 
