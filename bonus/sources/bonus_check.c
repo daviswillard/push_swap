@@ -14,36 +14,36 @@
 
 static void	rr(t_stack **lsta, t_stack **lstb)
 {
-	rotate(lsta, 0, 0);
-	rotate(lstb, 1, 0);
+	rotate_bon(lsta);
+	rotate_bon(lstb);
 }
 
 static void	rrr(t_stack **lsta, t_stack **lstb)
 {
-	r_rotate(lsta, 0, 0);
-	r_rotate(lstb, 1, 0);
+	r_rotate_bon(lsta);
+	r_rotate_bon(lstb);
 }
 
 static void	do_cmds(t_stack **lsta, t_stack **lstb, char *line)
 {
 	if (!ft_strncmp(line, "sa", ft_strlen(line)))
-		swap(lsta, 0, 0);
+		swap_bon(lsta);
 	else if (!ft_strncmp(line, "sb", ft_strlen(line)))
-		swap(lstb, 1, 0);
+		swap_bon(lstb);
 	else if (!ft_strncmp(line, "pa", ft_strlen(line)))
-		push(lstb, lsta, 0, 0);
+		push_bon(lstb, lsta);
 	else if (!ft_strncmp(line, "pb", ft_strlen(line)))
-		push(lsta, lstb, 1, 0);
+		push_bon(lsta, lstb);
 	else if (!ft_strncmp(line, "ra", ft_strlen(line)))
-		rotate(lsta, 0, 0);
+		rotate_bon(lsta);
 	else if (!ft_strncmp(line, "rb", ft_strlen(line)))
-		rotate(lstb, 1, 0);
+		rotate_bon(lstb);
 	else if (!ft_strncmp(line, "rr", ft_strlen(line)))
 		rr(lsta, lstb);
 	else if (!ft_strncmp(line, "rra", ft_strlen(line)))
-		r_rotate(lsta, 0, 0);
+		r_rotate_bon(lsta);
 	else if (!ft_strncmp(line, "rrb", ft_strlen(line)))
-		r_rotate(lstb, 1, 0);
+		r_rotate_bon(lstb);
 	else if (!ft_strncmp(line, "rrr", ft_strlen(line)))
 		rrr(lsta, lstb);
 	else
