@@ -18,4 +18,12 @@
 
 void	get_push_swap(t_stack **lsta, t_stack **lstb);
 
+void	swap_bon(t_stack **lst);
+
+void	push_bon(t_stack **lst_a, t_stack **lst_b);
+
+void	rotate_bon(t_stack **lst);
+
+void	r_rotate_bon(t_stack **lst);
+
 #endif
