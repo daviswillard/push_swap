@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm.c                                        :+:      :+:    :+:   */
+/*   bonus_algos.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/21 17:02:39 by dwillard          #+#    #+#             */
-/*   Updated: 2021/10/01 16:59:51 by dwillard         ###   ########.fr       */
+/*   Created: 2021/10/11 14:07:41 by dwillard          #+#    #+#             */
+/*   Updated: 2021/10/11 14:30:08 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../checker.h"
 
 void	ft_lstclr(t_stack **list)
 {
@@ -107,6 +107,7 @@ static int	check_all(t_stack *lst)
 
 void	*algs(t_stack **lsta, t_stack **lstb)
 {
+	get_push_swap(lsta, lstb);
 	if (check_all(*lsta))
 	{
 		ft_putendl_fd("OK", 1);

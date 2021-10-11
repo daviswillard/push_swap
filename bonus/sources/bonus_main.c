@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   bonus_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwillard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/18 11:00:22 by dwillard          #+#    #+#             */
-/*   Updated: 2021/10/08 14:42:06 by dwillard         ###   ########.fr       */
+/*   Created: 2021/10/11 14:08:14 by dwillard          #+#    #+#             */
+/*   Updated: 2021/10/11 14:31:46 by dwillard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../checker.h"
 
 static void	freed(char ***obj)
 {
@@ -61,6 +61,11 @@ static char	**parse_str(int *count, char *argv)
 	*count = 0;
 	argv = ft_strjoin("push_swap ", argv);
 	ret = ft_split(argv, ' ');
+	if (!ret || !argv)
+	{
+		ft_putendl_fd("Error", 2);
+		exit(0);
+	}
 	while (ret[*count])
 		(*count)++;
 	free(argv);

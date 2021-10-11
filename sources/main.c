@@ -61,6 +61,11 @@ static char	**parse_str(int *count, char *argv)
 	*count = 0;
 	argv = ft_strjoin("push_swap ", argv);
 	ret = ft_split(argv, ' ');
+	if (!ret || !argv)
+	{
+		ft_putendl_fd("Error", 2);
+		exit(0);
+	}
 	while (ret[*count])
 		(*count)++;
 	free(argv);
