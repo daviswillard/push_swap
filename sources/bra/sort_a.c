@@ -25,58 +25,18 @@ static void	casef(t_stack **lsta, t_stack *tmp)
 		swap(lsta, 0, 1);
 }
 
-static void	rdy_a(t_stack **lsta, t_stack **lstb, int counter)
-{
-	int	len;
-	int	hold;
-
-	len = lst_len(*lsta);
-	hold = counter;
-	if (counter <= len / 2)
-	{
-		while (counter-- > 0)
-			r_rotate(lsta, 0, 1);
-		push(lstb, lsta, 0, 1);
-		while (counter++ < hold)
-			rotate(lsta, 0, 1);
-	}
-	else
-	{
-		while (len - counter++ > 0)
-			rotate(lsta, 0, 1);
-		push(lstb, lsta, 0, 1);
-		while (counter++ < hold)
-			r_rotate(lsta, 0, 1);
-	}
-}
-
 static void	get_b_back(t_stack **lsta, t_stack **lstb)
 {
-	t_stack		*temp;
-	int			counter;
+	int		*moves;
 
-	temp = *lsta;
-	counter = 0;
-	while (temp->next)
-		temp = temp->next;
-	if ((*lstb)->index < (*lsta)->index)
-		push(lstb, lsta, 0, 1);
-	else if (temp->index < (*lstb)->index)
-	{
-		push(lstb, lsta, 0, 1);
-		rotate(lsta, 0, 1);
-	}
+	moves = moves_to_a_2(*lsta, (*lstb)->index);
+	if (moves[0] < moves[1])
+		while (moves[0]-- > 0)
+			rotate(lsta, 0, 1);
 	else
-	{
-		temp = (*lsta);
-		while (temp)
-		{
-			if (temp->index > (*lstb)->index)
-				counter++;
-			temp = temp->next;
-		}
-		rdy_a(lsta, lstb, counter);
-	}
+		while (moves[1]-- > 0)
+			r_rotate(lsta, 0,1);
+	push(lstb, lsta, 0, 1);
 }
 
 static void	small_sort(t_stack **lsta)

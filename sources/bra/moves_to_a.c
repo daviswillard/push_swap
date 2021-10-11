@@ -22,7 +22,7 @@ static void	rotater(t_stack *lst, int before, int *mv)
 	t_stack	*temp;
 
 	temp = lst;
-	while (temp->index != before)
+	while (temp->index != before && temp->next)
 		temp = temp->next;
 	if (!temp->next)
 		temp = lst;
@@ -55,9 +55,14 @@ int	*moves_to_a_2(t_stack *lsta, int index)
 			before = temp->index;
 		temp = temp->next;
 	}
-	moves = ft_calloc(4, sizeof(int));
-	rotater(lsta, before, &moves[0]);
-	moves[1] = lst_len(lsta) - moves[0];
+	if (before > 0)
+	{
+		moves = ft_calloc(4, sizeof(int));
+		rotater(lsta, before, &moves[0]);
+		moves[1] = lst_len(lsta) - moves[0];
+	}
+	else
+		moves = moves_to_a(lsta);
 	return (moves);
 }
 
