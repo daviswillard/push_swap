@@ -29,6 +29,8 @@ typedef struct s_lowhi
 	int		high;
 }				t_lowhi;
 
+void	print_stacks(t_stack *lsta, t_stack *lstb);
+
 int		elem_index(int **array, int len);
 
 int		minmax(int a, int b, int mnm);

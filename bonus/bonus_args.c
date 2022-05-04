@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker.h"
+#include <checker.h>
 
 static void	put_ind(int **integer, int **index, char **argv, int argc)
 {

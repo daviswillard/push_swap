@@ -14,7 +14,7 @@
 
 static int	condition_zero(char **line, int fd, char **buf)
 {
-	if (!line || fd < 0 || BUFFER_SIZE <= 0)
+	if ((!line || fd < 0) != 0)
 		return (-1);
 	*buf = malloc(sizeof(char *) * (BUFFER_SIZE + 1));
 	if (!*buf || read(fd, buf, 0))

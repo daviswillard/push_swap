@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker.h"
+#include <checker.h>
 
 static void	rr(t_stack **lsta, t_stack **lstb)
 {

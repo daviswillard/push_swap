@@ -15,8 +15,7 @@
 
 # define BUFFER_SIZE 100
 
-# include <unistd.h>
-# include <stdlib.h>
+# include <push_swap.h>
 
 int		get_next_line(int fd, char **line);
 

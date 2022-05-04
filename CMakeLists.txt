@@ -1,8 +1,18 @@
 cmake_minimum_required(VERSION 3.20)
 project(push_swap C)
 
-set(CMAKE_C_STANDARD 99)
+set(
+        CMAKE_C_STANDARD 99
+        libft/libft.h
+        push_swap.h
+        bonus/checker.h
+)
 
+include_directories(
+        bonus
+        libft
+        .
+)
 add_executable  (
         push_swap sources/main.c
         libft/ft_atoi.c
@@ -15,6 +25,11 @@ add_executable  (
         libft/ft_putstr_fd.c
         libft/ft_strlen.c
         libft/ft_split.c
+        libft/ft_putnbr_fd.c
+        libft/ft_strchr.c
+        libft/ft_strdup.c
+        libft/ft_strncmp.c
+        libft/ft_putchar_fd.c
         push_swap.h
         sources/args.c
         sources/push_utils.c

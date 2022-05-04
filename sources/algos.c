@@ -105,6 +105,25 @@ static int	check_all(t_stack *lst)
 	return (1);
 }
 
+void	print_stacks(t_stack *lsta, t_stack *lstb)
+{
+	for (int i = 0; i < lst_len(lsta); i++)
+	{
+		if (lsta && lst_len(lsta) > i)
+		{
+			ft_putnbr_fd(lsta->index, STDOUT_FILENO);
+			lsta = lsta->next;
+		}
+		ft_putstr_fd("\t", STDOUT_FILENO);
+		if (lstb && lst_len(lstb) > i)
+		{
+			ft_putnbr_fd(lstb->index, STDOUT_FILENO);
+			lstb = lstb->next;
+		}
+		ft_putendl_fd("", STDOUT_FILENO);
+	}
+}
+
 void	*algs(t_stack **lsta, t_stack **lstb)
 {
 	if (check_all(*lsta))
@@ -118,5 +137,6 @@ void	*algs(t_stack **lsta, t_stack **lstb)
 		swap(lsta, 0, 1);
 	else
 		bra(*lsta, *lstb);
+	print_stacks(*lsta, *lstb);
 	return (NULL);
 }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker.h"
+#include <checker.h>
 
 static void	check_dup(t_stack *lst, int *set)
 {

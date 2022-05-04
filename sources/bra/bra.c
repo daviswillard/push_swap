@@ -50,8 +50,10 @@ int	bra(t_stack *lsta, t_stack *lstb)
 	pos[1] = get_pos_grt(&lsta, lst_len(lsta), &grt);
 	copy = ft_lstcpy(lsta);
 	cat[0] = act_ind(copy, lstb, pos[0], ind);
+	print_stacks(copy, lstb);
 	copy = ft_lstcpy(lsta);
 	cat[1] = act_ind(copy, lstb, pos[1], grt);
+	print_stacks(copy, lstb);
 	copy = ft_lstcpy(lsta);
 	if (!decide(cat[0], cat[1], ind, grt))
 		act_ind(copy, lstb, pos[0], ind);

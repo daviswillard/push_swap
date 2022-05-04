@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker.h"
+#include <checker.h>
 
 static void	freed(char ***obj)
 {
